@@ -88,6 +88,12 @@ module.exports = {
         var_selected: '//*[@id="toggle-all-combinations"]',
         var_selected_quantitie: '//*[@id="product_combination_bulk_quantity"]',
         save_quantitie_button: '//*[@id="apply-on-combinations"]',
+        add_feature_to_product_button:'//*[@id="add_feature_button"]',
+        feature_select:'//*[@id="features-content"]/div/div/div[1]/fieldset/span/span[1]/span',
+        select_feature_created:'/html/body/span[3]/span/span[1]/input',
+        feature_choice:'/html/body/span[3]/span/span[2]/ul/li',
+        feature_value_select:'//*[@id="features-content"]/div/div/div[2]/fieldset/span/span[1]/span/span[1]',
+        feature_value_choice:'//*[@id="select2-form_step1_features_0_value-results"]/li[2]'
       },
 
       //catalog selector
@@ -121,24 +127,22 @@ module.exports = {
         },
         AttributeSubmenu:{
           submenu:'//*[@id="subtab-AdminParentAttributesGroups"]/a',
-          add_new_attribute:'//*[@id="page-header-desc-attribute_group-new_attribute_group"]',
+        },
+        FeatureSubmenu: {
+          tabmenu:'//*[@id="content"]/div[1]/div/div[2]/a[2]',
+          add_new_feature:'//*[@id="page-header-desc-feature-new_feature"]/div',
           name_input:'//*[@id="name_1"]',
-          public_name_input:'//*[@id="public_name_1"]',
-          type_select:'//*[@id="group_type"]',
-          save_button:'//*[@id="attribute_group_form_submit_btn"]',
-          search_input:'//*[@id="table-attribute_group"]/thead/tr[2]/th[3]/input',
-          search_button:'//*[@id="submitFilterButtonattribute_group"]',
-          selected_attribute:'//*[@id="table-attribute_group"]/tbody/tr/td[3]',
-          add_value_button:'//*[@id="page-header-desc-attribute-new_value"]',
-          save_and_add:'//*[@id="fieldset_0"]/div[3]/button[2]',
-          save:'//*[@id="attribute_form_submit_btn"]',
-          value_input:'//*[@id="name_1"]',
-          value_action_group_button:'//*[@id="table-attribute"]/tbody/tr[1]/td[5]/div/div/button',
-          delete_value_button:'//*[@id="table-attribute"]/tbody/tr[1]/td[5]/div/div/ul/li/a',
-          group_action_button:'//*[@id="table-attribute_group"]/tbody/tr/td[6]/div/div/button',
-          delete_attribut_button:'//*[@id="table-attribute_group"]/tbody/tr/td[6]/div/div/ul/li[3]/a',
-          update_button:'//*[@id="table-attribute_group"]/tbody/tr/td[6]/div/div/ul/li[1]/a',
-          update_value_button:'//*[@id="table-attribute"]/tbody/tr[1]/td[5]/div/div/a'
+          save_button:'//*[@id="feature_form_submit_btn"]',
+          search_input:'//*[@id="table-feature"]/thead/tr[2]/th[3]/input',
+          search_button:'//*[@id="submitFilterButtonfeature"]',
+          selected_feature:'//*[@id="table-feature"]/tbody/tr/td[6]/div/div/a',
+          add_value_button:'//*[@id="page-header-desc-feature_value-new_feature_value"]',
+          value_input:'//*[@id="value_1"]',
+          save_value_button:'//*[@id="feature_value_form_submit_btn"]',
+          select_option:'//*[@id="table-feature"]/tbody/tr/td[6]/div/div/button',
+          update_feature_button:'//*[@id="table-feature"]/tbody/tr/td[6]/div/div/ul/li[1]/a',
+          update_feature_value_button:'//*[@id="table-feature_value"]/tbody/tr/td[3]/div/div/a',
+          delete_feature:'//*[@id="table-feature"]/tbody/tr/td[6]/div/div/ul/li[3]/a'
         }
       },
 
@@ -236,9 +240,8 @@ module.exports = {
         product_result_name: '.h3.product-title > a',
         product_result_price: '[itemprop="price"]',
         attribut_name: '//*[@id="add-to-cart-or-refresh"]/div[1]/div/span',
-        attribut_value_1:'//*[@id="add-to-cart-or-refresh"]/div[1]/div/ul/li[1]/label/span',
-        attribut_value_2:'//*[@id="add-to-cart-or-refresh"]/div[1]/div/ul/li[2]/label/span',
-        attribut_value_3:'//*[@id="add-to-cart-or-refresh"]/div[1]/div/ul/li[3]/label/span'
+        feature_name:'//*[@id="product-details"]/section/dl/dt',
+        feature_value:'//*[@id="product-details"]/section/dl/dd',
       },
       //product page
       ProductPage:{
