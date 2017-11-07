@@ -22,23 +22,21 @@ class PrestashopClient {
     return this.client.signoutFO();
   }
 
-  takeScreenshot() {
-    return this.client.saveScreenshot(`test/screenshots/${this.client.desiredCapabilities.browserName}_exception_${global.date_time}.png`);
+  onBoarding(){
+    return this.client.onboarding();
   }
 
-  SuccessPanel(index) {
-    return this.client
-      .waitForExist(selector.BO.CatalogPage.success_panel)
-      .then(() => this.client.getText(selector.BO.CatalogPage.success_panel))
-      .then((text) => expect(text.substring(2)).to.be.equal(index));
+  takeScreenshot() {
+    return this.client.saveScreenshot(`test/screenshots/${this.client.desiredCapabilities.browserName}_exception_${global.date_time}.png`);
   }
 
   successPanel(index) {
     return this.client
       .waitForExist(selector.BO.CatalogPage.success_panel)
       .then(() => this.client.getText(selector.BO.CatalogPage.success_panel))
-      .then((text) => expect(text.substring(2)).to.be.equal(index));
+      .then((text) => expect(text.substr(2)).to.be.equal(index));
   }
+
 
   open() {
     return this.client.init().windowHandleSize({width: 1280, height: 1024});

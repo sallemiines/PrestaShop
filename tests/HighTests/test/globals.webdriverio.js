@@ -14,6 +14,7 @@ global.product_id = new Date().getTime();
 global.new_customer_email = 'pub' + date_time + '@prestashop.com';
 global.categoryImage = path.join(__dirname, '', 'datas', 'category_image.png');
 global.categoryThumb = path.join(__dirname, '', 'datas', 'category_miniature.png');
+global.brandsImage = path.join(__dirname, '', 'datas', 'prestashop.png');
 
 module.exports = {
   selector: {
@@ -88,27 +89,27 @@ module.exports = {
         var_selected: '//*[@id="toggle-all-combinations"]',
         var_selected_quantitie: '//*[@id="product_combination_bulk_quantity"]',
         save_quantitie_button: '//*[@id="apply-on-combinations"]',
-        add_feature_to_product_button:'//*[@id="add_feature_button"]',
-        feature_select:'//*[@id="features-content"]/div/div/div[1]/fieldset/span/span[1]/span',
-        select_feature_created:'/html/body/span[3]/span/span[1]/input',
-        feature_choice:'/html/body/span[3]/span/span[2]/ul/li',
-        feature_value_select:'//*[@id="features-content"]/div/div/div[2]/fieldset/span/span[1]/span/span[1]',
-        feature_value_choice:'//*[@id="select2-form_step1_features_0_value-results"]/li[2]'
+        add_feature_to_product_button: '//*[@id="add_feature_button"]',
+        feature_select: '//*[@id="features-content"]/div/div/div[1]/fieldset/span/span[1]/span',
+        select_feature_created: '/html/body/span[3]/span/span[1]/input',
+        feature_choice: '/html/body/span[3]/span/span[2]/ul/li',
+        feature_value_select: '//*[@id="features-content"]/div/div/div[2]/fieldset/span/span[1]/span/span[1]',
+        feature_value_choice: '//*[@id="select2-form_step1_features_0_value-results"]/li[2]'
       },
 
       //catalog selector
       CatalogPage: {
         menu_button: '//*[@id="subtab-AdminCatalog"]/a',
-        success_panel:'//*[@id="content"]/div[3]/div',
-        select_all_product_button:'//*[@id="bulk_action_select_all"]',
-        action_group_button:'//*[@id="product_bulk_menu"]',
-        disable_all_selected:'//*[@id="main-div"]/div[3]/div/div/div[2]/div/div[2]/div[2]/div/div/a[2]',
-        enable_all_selected:'//*[@id="main-div"]/div[3]/div/div/div[2]/div/div[2]/div[2]/div/div/a[1]',
-        succes_panel_all_item:'//*[@id="main-div"]/div[3]/div/div/div[2]',
-        succes_panel_all_item_message:'//*[@id="main-div"]/div[3]/div/div/div[2]/ul/li',
-        etat_first_product:'//*[@id="product_catalog_list"]/div[2]/div/table/tbody/tr[1]/td[8]/a/i',
-        etat_last_product:'//*[@id="product_catalog_list"]/div[2]/div/table/tbody/tr[8]/td[8]/a/i',
-        duplicate_button:'//*[@id="main-div"]/div[3]/div/div/div[2]/div/div[2]/div[2]/div/div/a[3]',
+        success_panel: '//*[@id="content"]/div[3]/div',
+        select_all_product_button: '//*[@id="bulk_action_select_all"]',
+        action_group_button: '//*[@id="product_bulk_menu"]',
+        disable_all_selected: '//*[@id="main-div"]/div[3]/div/div/div[2]/div/div[2]/div[2]/div/div/a[2]',
+        enable_all_selected: '//*[@id="main-div"]/div[3]/div/div/div[2]/div/div[2]/div[2]/div/div/a[1]',
+        succes_panel_all_item: '//*[@id="main-div"]/div[3]/div/div/div[2]',
+        succes_panel_all_item_message: '//*[@id="main-div"]/div[3]/div/div/div[2]/ul/li',
+        etat_first_product: '//*[@id="product_catalog_list"]/div[2]/div/table/tbody/tr[1]/td[8]/a/i',
+        etat_last_product: '//*[@id="product_catalog_list"]/div[2]/div/table/tbody/tr[8]/td[8]/a/i',
+        duplicate_button: '//*[@id="main-div"]/div[3]/div/div/div[2]/div/div[2]/div[2]/div/div/a[3]',
         CategorySubmenu: {
           submenu: '//*[@id="subtab-AdminCategories"]/a',
           new_category_button: '//*[@id="page-header-desc-category-new_category"]/div',
@@ -134,24 +135,84 @@ module.exports = {
           action_group_button: '//*[@id="form-category"]/div/div[3]/div/div/button',
           delete_action_group_button: '//*[@id="form-category"]/div/div[3]/div/div/ul/li[7]/a'
         },
-        AttributeSubmenu:{
-          submenu:'//*[@id="subtab-AdminParentAttributesGroups"]/a',
+        AttributeSubmenu: {
+          submenu: '//*[@id="subtab-AdminParentAttributesGroups"]/a',
+          add_new_attribute: '//*[@id="page-header-desc-attribute_group-new_attribute_group"]',
+          name_input: '//*[@id="name_1"]',
+          public_name_input: '//*[@id="public_name_1"]',
+          type_select: '//*[@id="group_type"]',
+          save_button: '//*[@id="attribute_group_form_submit_btn"]',
+          search_input: '//*[@id="table-attribute_group"]/thead/tr[2]/th[3]/input',
+          search_button: '//*[@id="submitFilterButtonattribute_group"]',
+          selected_attribute: '//*[@id="table-attribute_group"]/tbody/tr/td[3]',
+          add_value_button: '//*[@id="page-header-desc-attribute-new_value"]',
+          save_and_add: '//*[@id="fieldset_0"]/div[3]/button[2]',
+          save: '//*[@id="attribute_form_submit_btn"]',
+          value_input: '//*[@id="name_1"]',
+          value_action_group_button: '//*[@id="table-attribute"]/tbody/tr[1]/td[5]/div/div/button',
+          delete_value_button: '//*[@id="table-attribute"]/tbody/tr[1]/td[5]/div/div/ul/li/a',
+          group_action_button: '//*[@id="table-attribute_group"]/tbody/tr/td[6]/div/div/button',
+          delete_attribut_button: '//*[@id="table-attribute_group"]/tbody/tr/td[6]/div/div/ul/li[3]/a',
+          update_button: '//*[@id="table-attribute_group"]/tbody/tr/td[6]/div/div/ul/li[1]/a',
+          update_value_button: '//*[@id="table-attribute"]/tbody/tr[1]/td[5]/div/div/a'
         },
         FeatureSubmenu: {
-          tabmenu:'//*[@id="content"]/div[1]/div/div[2]/a[2]',
-          add_new_feature:'//*[@id="page-header-desc-feature-new_feature"]/div',
-          name_input:'//*[@id="name_1"]',
-          save_button:'//*[@id="feature_form_submit_btn"]',
-          search_input:'//*[@id="table-feature"]/thead/tr[2]/th[3]/input',
-          search_button:'//*[@id="submitFilterButtonfeature"]',
-          selected_feature:'//*[@id="table-feature"]/tbody/tr/td[6]/div/div/a',
-          add_value_button:'//*[@id="page-header-desc-feature_value-new_feature_value"]',
-          value_input:'//*[@id="value_1"]',
-          save_value_button:'//*[@id="feature_value_form_submit_btn"]',
-          select_option:'//*[@id="table-feature"]/tbody/tr/td[6]/div/div/button',
-          update_feature_button:'//*[@id="table-feature"]/tbody/tr/td[6]/div/div/ul/li[1]/a',
-          update_feature_value_button:'//*[@id="table-feature_value"]/tbody/tr/td[3]/div/div/a',
-          delete_feature:'//*[@id="table-feature"]/tbody/tr/td[6]/div/div/ul/li[3]/a'
+          tabmenu: '//*[@id="content"]/div[1]/div/div[2]/a[2]',
+          add_new_feature: '//*[@id="page-header-desc-feature-new_feature"]/div',
+          name_input: '//*[@id="name_1"]',
+          save_button: '//*[@id="feature_form_submit_btn"]',
+          search_input: '//*[@id="table-feature"]/thead/tr[2]/th[3]/input',
+          search_button: '//*[@id="submitFilterButtonfeature"]',
+          selected_feature: '//*[@id="table-feature"]/tbody/tr/td[6]/div/div/a',
+          add_value_button: '//*[@id="page-header-desc-feature_value-new_feature_value"]',
+          value_input: '//*[@id="value_1"]',
+          save_value_button: '//*[@id="feature_value_form_submit_btn"]',
+          select_option: '//*[@id="table-feature"]/tbody/tr/td[6]/div/div/button',
+          update_feature_button: '//*[@id="table-feature"]/tbody/tr/td[6]/div/div/ul/li[1]/a',
+          update_feature_value_button: '//*[@id="table-feature_value"]/tbody/tr/td[3]/div/div/a',
+          delete_feature: '//*[@id="table-feature"]/tbody/tr/td[6]/div/div/ul/li[3]/a',
+          public_name_input: '//*[@id="public_name_1"]',
+          type_select: '//*[@id="group_type"]',
+          selected_attribute: '//*[@id="table-attribute_group"]/tbody/tr/td[3]',
+          save_and_add: '//*[@id="fieldset_0"]/div[3]/button[2]',
+          save: '//*[@id="attribute_form_submit_btn"]',
+          value_action_group_button: '//*[@id="table-attribute"]/tbody/tr[1]/td[5]/div/div/button',
+          delete_value_button: '//*[@id="table-attribute"]/tbody/tr[1]/td[5]/div/div/ul/li/a',
+          group_action_button: '//*[@id="table-attribute_group"]/tbody/tr/td[6]/div/div/button',
+          delete_attribut_button: '//*[@id="table-attribute_group"]/tbody/tr/td[6]/div/div/ul/li[3]/a',
+          update_button: '//*[@id="table-attribute_group"]/tbody/tr/td[6]/div/div/ul/li[1]/a',
+          update_value_button: '//*[@id="table-attribute"]/tbody/tr[1]/td[5]/div/div/a'
+        },
+        Manufacturers: {
+          submenu: '//*[@id="subtab-AdminParentManufacturers"]/a',
+          Brands: {
+            new_brand_button: '//*[@id="page-header-desc-address-new_manufacturer"]',
+            name_input: '//*[@id="name"]',
+            short_desc_textarea: '//*[@id="manufacturer_form"]/div/div[2]/div[2]/div/div/div/div[1]/div/div/div/div/div/div[1]/button',
+            short_desc_source_code_modal: '/html/body/div[5]/div[2]/div[2]/div/textarea',
+            short_desc_source_code_modal_confirmation: '/html/body/div[5]/div[3]/div/div[2]/button',
+            desc_textarea: '//*[@id="manufacturer_form"]/div/div[2]/div[3]/div/div/div/div[1]/div/div/div/div/div/div[1]/button',
+            image_input: '//*[@id="logo"]',
+            meta_title_input: '//*[@id="meta_title_1"]',
+            meta_description_input: '//*[@id="meta_description_1"]',
+            meta_keywords_input: '//*[@id="manufacturer_form"]/div/div[2]/div[7]/div/div/input',
+            active_button: '//*[@id="manufacturer_form"]/div/div[2]/div[8]/div/span/label[1]',
+            save_button: '//*[@id="manufacturer_form_submit_btn"]',
+          },
+          BrandsAddress: {
+            new_brand_address_button: '//*[@id="page-header-desc-address-new_manufacturer_address"]',
+            branch_select: '//*[@id="id_manufacturer"]',
+            last_name_input: '//*[@id="lastname"]',
+            first_name_input: '//*[@id="firstname"]',
+            address_input: '//*[@id="address1"]',
+            secondary_address: '//*[@id="address2"]',
+            postal_code_input: '//*[@id="postcode"]',
+            city_input: '//*[@id="city"]',
+            country: '//*[@id="id_country"]',
+            phone_input: '//*[@id="phone"]',
+            other_input: '//*[@id="other"]',
+            save_button: '//*[@id="address_form_submit_btn"]'
+          }
         }
       },
 
@@ -243,18 +304,21 @@ module.exports = {
       //Search selector
       SearchProductPage: {
         category_list: '//*[@id="left-column"]/div[1]/ul/li[2]/ul/li',
-        second_category_name:'//*[@id="left-column"]/div[1]/ul/li[2]/ul/li[2]/a',
+        second_category_name: '//*[@id="left-column"]/div[1]/ul/li[2]/ul/li[2]/a',
         product_search_input: '.ui-autocomplete-input',
         product_search_button: '.material-icons.search',
         product_result_name: '.h3.product-title > a',
         product_result_price: '[itemprop="price"]',
         attribut_name: '//*[@id="add-to-cart-or-refresh"]/div[1]/div/span',
-        feature_name:'//*[@id="product-details"]/section/dl/dt',
-        feature_value:'//*[@id="product-details"]/section/dl/dd',
+        feature_name: '//*[@id="product-details"]/section/dl/dt',
+        feature_value: '//*[@id="product-details"]/section/dl/dd',
+        attribut_value_1: '//*[@id="add-to-cart-or-refresh"]/div[1]/div/ul/li[1]/label/span',
+        attribut_value_2: '//*[@id="add-to-cart-or-refresh"]/div[1]/div/ul/li[2]/label/span',
+        attribut_value_3: '//*[@id="add-to-cart-or-refresh"]/div[1]/div/ul/li[3]/label/span'
       },
       //product page
-      ProductPage:{
-        title:'//*[@id="main"]/div[1]/div[2]/h1'
+      ProductPage: {
+        title: '//*[@id="main"]/div[1]/div[2]/h1'
       }
     }
 
