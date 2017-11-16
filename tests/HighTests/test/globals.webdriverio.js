@@ -212,18 +212,49 @@ module.exports = {
             phone_input: '//*[@id="phone"]',
             other_input: '//*[@id="other"]',
             save_button: '//*[@id="address_form_submit_btn"]'
+          },
+        },
+        StockSubmenu: {
+          Stock: {
+            submenu: '//*[@id="collapse-9"]/li[8]/a',
+            tabs: '//*[@id="tab"]/li[1]/a',
+            first_product_quantity_input: '//*[@id="app"]/div[3]/section/table/tbody/tr[1]/td[7]/form/span/input',
+            first_product_quantity: '//*[@id="app"]/div[3]/section/table/tbody/tr[1]/td[6]',
+            first_product_quantity_modified: '//*[@id="app"]/div[3]/section/table/tbody/tr[1]/td[6]/span',
+            second_product_quantity_input: '//*[@id="app"]/div[3]/section/table/tbody/tr[2]/td[7]/form/span/input',
+            second_product_quantity: '//*[@id="app"]/div[3]/section/table/tbody/tr[2]/td[6]',
+            second_product_quantity_modified: '//*[@id="app"]/div[3]/section/table/tbody/tr[2]/td[6]/span',
+            third_product_quantity_input: '//*[@id="app"]/div[3]/section/table/tbody/tr[3]/td[7]/form/span/input',
+            third_product_quantity: '//*[@id="app"]/div[3]/section/table/tbody/tr[3]/td[6]',
+            third_product_quantity_modified: '//*[@id="app"]/div[3]/section/table/tbody/tr[3]/td[6]/span',
+            save_third_product_quantity_button: '//*[@id="app"]/div[3]/section/table/tbody/tr[3]/td[7]/form/button',
+            fourth_product_quantity_input: '//*[@id="app"]/div[3]/section/table/tbody/tr[4]/td[7]/form/span/input',
+            fourth_product_quantity: '//*[@id="app"]/div[3]/section/table/tbody/tr[4]/td[6]',
+            fourth_product_quantity_modified: '//*[@id="app"]/div[3]/section/table/tbody/tr[4]/td[6]/span',
+            save_fourth_product_quantity_button: '//*[@id="app"]/div[3]/section/table/tbody/tr[4]/td[7]/form/button',
+            group_apply_button: '//*[@id="app"]/div[3]/section/div/div[2]/div/button',
+            add_quantity_button: '//*[@id="app"]/div[3]/section/table/tbody/tr[3]/td[7]/form/span/a[1]',
+            success_panel: '//*[@id="growls"]',
+          },
+          Movements: {
+            tabs: '//*[@id="tab"]/li[2]/a',
+            variation: '//*[@id="app"]/div[3]/section/table/tbody/tr[1]/td[4]/span/span'
           }
         }
       },
 
       //Order selector
       OrderPage: {
-        orders_subtab: '#subtab-AdminParentOrders',
+        orders_subtab: '//*[@id="subtab-AdminParentOrders"]/a',
         form: '#form-order',
         order_product_name_span: '.productName',
         order_product_quantity_span: '.product_quantity_show',
         order_product_total: '#total_order > td.amount.text-right.nowrap',
-        order_reference_span: '((//div[@class="panel-heading"])[1]/span)[1]'
+        order_reference_span: '((//div[@class="panel-heading"])[1]/span)[1]',
+        first_order: '//*[@id="form-order"]/div/div[2]/table/tbody/tr[1]/td[12]/div/a',
+        order_state_select: '//*[@id="id_order_state"]',
+        update_status_button: '//*[@id="status"]/form/div/div[2]/button',
+        order_quantity: '//*[@id="orderProducts"]/tbody/tr[1]/td[4]/span[1]'
       },
       //Module selector
       ModulePage: {
@@ -233,7 +264,6 @@ module.exports = {
         page_loaded: '.module-search-result-wording',
         installed_modules_tabs: '(//div[@class="page-head-tabs"]/a)[2]',
         module_number_span: '[class="module-sorting-search-wording"]',
-
         module_tech_name: '//div[@data-tech-name="' + module_tech_name + '" and not(@style)]',
         install_module_btn: '//div[@data-tech-name="' + module_tech_name + '" and not(@style)]//button[@data-confirm_modal="module-modal-confirm-' + module_tech_name + '-install"]',
         uninstall_module_list: '//div[@data-tech-name="' + module_tech_name + '" and not(@style)]//button[@class="btn btn-primary-outline  dropdown-toggle"]',
@@ -247,7 +277,6 @@ module.exports = {
         stop_button: '.onboarding-button-stop'
       }
     },
-
 
     //FO
     FO: {
@@ -315,7 +344,7 @@ module.exports = {
         attribut_value_1: '//*[@id="add-to-cart-or-refresh"]/div[1]/div/ul/li[1]/label/span',
         attribut_value_2: '//*[@id="add-to-cart-or-refresh"]/div[1]/div/ul/li[2]/label/span',
         attribut_value_3: '//*[@id="add-to-cart-or-refresh"]/div[1]/div/ul/li[3]/label/span'
-      },
+     },
       //product page
       ProductPage: {
         title: '//*[@id="main"]/div[1]/div[2]/h1'
