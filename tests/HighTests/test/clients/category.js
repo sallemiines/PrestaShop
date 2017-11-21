@@ -91,20 +91,17 @@ class Category extends PrestashopClient {
     return this.client
       .waitForExist(selector.BO.CatalogPage.CategorySubmenu.update_button, 90000)
       .click(selector.BO.CatalogPage.CategorySubmenu.update_button)
-      .isExisting(selector.BO.CatalogPage.CategorySubmenu.image_link).then(function (text) {
-        if (!text) {
-          done(new Error('we could not find the image'));
-        }
-      })
+      .pause(2000)
+      .then(() => this.client.isExisting(selector.BO.CatalogPage.CategorySubmenu.image_link))
+      .then((text) => expect(text).to.be.equal(true));
+
   }
 
   checkCategoryImageThumb() {
     return this.client
-      .isExisting(selector.BO.CatalogPage.CategorySubmenu.thumb_link).then(function (text) {
-        if (!text) {
-          done(new Error('we could not find the thumb image'));
-        }
-      })
+      .waitForExist(selector.BO.CatalogPage.CategorySubmenu.thumb_link, 90000)
+      .then(() => this.client.isExisting(selector.BO.CatalogPage.CategorySubmenu.thumb_link))
+      .then((text) => expect(text).to.be.equal(true));
   }
 
   checkCategoryTitle() {
@@ -164,7 +161,7 @@ class Category extends PrestashopClient {
       .click(selector.BO.CatalogPage.CategorySubmenu.second_delete_button)
   }
 
-  deleteCategoryWithActiongroup() {
+  deleteCategoryWithActionGroup() {
     return this.client
       .waitForExist(selector.BO.CatalogPage.CategorySubmenu.select_category, 90000)
       .click(selector.BO.CatalogPage.CategorySubmenu.select_category)
@@ -175,6 +172,7 @@ class Category extends PrestashopClient {
       .alertAccept()
       .waitForExist(selector.BO.CatalogPage.CategorySubmenu.second_delete_button, 90000)
       .click(selector.BO.CatalogPage.CategorySubmenu.second_delete_button)
+      .pause(5000)
   }
 
 }
