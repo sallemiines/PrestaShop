@@ -74,6 +74,7 @@ scenario('Case N°1 : Add a new currency in BO', client => {
           .then(() => client.alertAccept())
       });
       test('should check that the success alert message is well displayed ', () => client.checkTextValue(Currencies.green_validation, '×\nSuccessful deletion.'));
+      test('should logout successfully from the Front Office', () => client.signOutBO(AccessPageBO));
     }, 'common_client');
   }, 'common_client');
 }, 'common_client', true);
