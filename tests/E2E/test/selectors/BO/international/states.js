@@ -1,0 +1,25 @@
+module.exports = {
+  States: {
+    add_new_state: '#page-header-desc-state-new_state',
+    name_input: '#name',
+    iso_code_input: '#iso_code',
+    country_list: '#id_country',
+    zone_list: '#id_zone',
+    status_on: '//*[@id="fieldset_0"]//div[@class="form-group"]//label[@for="active_on"]',
+    save_button: '#state_form_submit_btn',
+    success_panel: '//*[@id="content"]//div[@class="alert alert-success"]',
+    search_name_input: '//*[@id="table-state"]//input[@class="filter" and @name="stateFilter_a!name"]',
+    search_button: '#submitFilterButtonstate',
+    state_name: '//*[@id="table-state"]/tbody/tr/td[3]',
+    state_iso_code: '//*[@id="table-state"]/tbody/tr/td[4]',
+    state_zone: '//*[@id="table-state"]/tbody/tr/td[5]',
+    state_country: '//*[@id="table-state"]/tbody/tr/td[6]',
+    edit_button: '//*[@id="table-state"]/tbody/tr/td[8]/div/div/a',
+    status_off: '//*[@id="fieldset_0"]//div[@class="form-group"]//label[@for="active_off"]',
+    dropdown_button: '//*[@id="table-state"]//button[@class="btn btn-default dropdown-toggle"]',
+    delete_button: '//*[@id="table-state"]//a[@class="delete"]',
+    bulk_actions_button: '#bulk_action_menu_state',
+    selected_state: '//*[@id="table-state"]//input[@type="checkbox"]',
+    delete_selected_item: '//*[@id="form-state"]//div[@class="btn-group bulk-actions dropup open"]//li[7]',
+  }
+};
