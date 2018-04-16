@@ -2,7 +2,6 @@ const {AccessPageFO} = require('../../selectors/FO/access_page');
 const {AccessPageBO} = require('../../selectors/BO/access_page');
 const {DesignPage} = require('../../selectors/BO/design_page');
 const {Menu} = require('../../selectors/BO/menu.js');
-
 let promise = Promise.resolve();
 module.exports = {
   changeCurrentImage() {
@@ -23,7 +22,16 @@ module.exports = {
       });
       test('should check the shop logo  ', () => client.checkAttributeValue(AccessPageFO.logo_shop_page, 'src', global.value))
     }, 'common_client');
+  },
+
+  exportCurrentTheme(path) {
+    scenario('Export the current theme', client => {
+      test('should go to "Theme & Logo" page', () => client.goToSubtabMenuPage(Menu.Improve.Design.design_menu, Menu.Improve.Design.theme_logo_submenu));
+      test('should click on "Export current theme" button', () => client.waitForExistAndClick(DesignPage.export_theme_button));
+      test('should check the green validation', () => client.waitForVisible(DesignPage.green_validation));
+      test('should check that the current theme is successfully exported', () => client.checkFile(path + '/', 'classic.zip', 1000));
+      test('should check the exported files', () => client.zipp(path + '/classic.zip', path));
+    }, 'change_logo');
   }
 };
-
 
