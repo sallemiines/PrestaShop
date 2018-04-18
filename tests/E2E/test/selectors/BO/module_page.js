@@ -9,6 +9,7 @@ module.exports = {
     search_button: '.btn.btn-primary.pull-right.search-button',
     page_loaded: '.module-search-result-wording',
     installed_modules_tabs: '(//div[@class="page-head-tabs"]/a)[2]',
+    installed_modules: '//*[@id="installed_modules"]',
     modules_search_input: '.pstaggerAddTagInput',
     module_selection_input: '//input[contains(@class,"pstaggerAddTagInput ")]',
     modules_search_button: '//*[@id="main-div"]//button[contains(@class,"search-button")]',
@@ -49,8 +50,13 @@ module.exports = {
     enable_module: '//form[contains(@action, "action/enable/%moduleTechName")]//button[@data-confirm_modal="module-modal-confirm-%moduleTechName-enable"]',
     reset_module: '//form[contains(@action, "action/reset/%moduleTechName")]//button[@data-confirm_modal="module-modal-confirm-%moduleTechName-reset"]',
     reset_button_modal: '//*[@id="module-modal-confirm-%moduleTechName-reset"]//a[contains(@class, "module_action_modal_reset")]',
-    backdrop_modale:'//div[contains(@class, "fade show")]',
+    backdrop_modale: '//div[contains(@class, "fade show")]',
     installed_module_div: '//div[@data-tech-name="%moduleTechName"]',
+    selection_modules_tab: '(//div[@class="page-head-tabs"]/a)[1]',
+    current_version_module: '//*[@id="modules-list-container-all"]//div[@class="text-ellipsis small-text module-version-author-grid"]',
+    module_version: '//*[@id="modules-list-container-%ID"]//span[@class="text-ellipsis small-text"]',
+    force_deletion:'//*[@id="force_deletion"]',
+    module_container:'//*[@id="modules-list-container-all"]//div[@class="badges-container"]',
     //List of modules after search
     list_module: '//*[@id="modules-list-container-all"]/div[%I]',
     modules_number: '[class="module-sorting-search-wording"]',
@@ -67,6 +73,12 @@ module.exports = {
       save_button: '//*[@id="module_form_submit_btn"]'
     },
 
+    ModulePaymentsByCheckPage: {
+      payee_input: '//*[@id="CHEQUE_NAME"]',
+      adress_input: '//*[@id="CHEQUE_ADDRESS"]',
+      save_button: '//*[@id="configuration_form_submit_btn"]',
+      green_validation: '//*[@id="content"]//div[@class="module_confirmation conf confirm alert alert-success"]',
+    },
     //Module name in "addons.prestashop.com" after clicking on "Dicover" button
     module_name: '//*[@id="product_content"]/div[@class="product_head"]//h1'
   }

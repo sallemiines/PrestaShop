@@ -1,5 +1,5 @@
 var CommonClient = require('./common_client');
-
+let fs = require('fs');
 global.moduleObject = {
   "data-name": '',
   "data-tech-name": '',
@@ -27,7 +27,7 @@ class Module extends CommonClient {
     return this.client
       .pause(12000)
       .then(() => {
-        for (let k = 0; k < number-1; k++) {
+        for (let k = 0; k < number - 1; k++) {
           var exist = false;
           for (var attr in moduleLists[k]) {
             if (moduleLists[k][attr].includes('contact') || moduleLists[k][attr].includes('form')) {
@@ -83,6 +83,21 @@ class Module extends CommonClient {
             }).reverse()).to.deep.equal(moduleSort)
           }, 1000 * length)
       });
+  }
+
+  checkFolder(folderPath, docname, exist = false, pause = 0) {
+    fs.stat(folderPath + docname, function (err, stats) {
+      err === null && stats.isDirectory() ? global.existingDoc = true : global.existingDoc = false;
+    });
+    if (exist) {
+      return this.client
+        .pause(pause)
+        .then(() => expect(global.existingDoc).to.be.true)
+    } else {
+      return this.client
+        .pause(pause)
+        .then(() => expect(global.existingDoc).to.be.false)
+    }
   }
 }
 

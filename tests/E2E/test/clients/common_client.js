@@ -1,7 +1,6 @@
 const {getClient} = require('../common.webdriverio.js');
 const {selector} = require('../globals.webdriverio.js');
 let path = require('path');
-let fs = require('fs');
 let pdfUtil = require('pdf-to-text');
 
 global.tab = [];
@@ -46,8 +45,7 @@ class CommonClient {
 
   goToSubtabMenuPage(menuSelector, selector) {
     return this.client
-      .waitForExist(menuSelector, 90000)
-      .moveToObject(menuSelector)
+      .waitForExistAndClick(menuSelector, 90000)
       .waitForVisibleAndClick(selector);
   }
 
@@ -340,7 +338,8 @@ class CommonClient {
       .then((isVisible) => expect(isVisible).to.be.false);
   }
 
-  editObjectData(object) {
+
+  editObjectData(object, type = '') {
     for (let key in object) {
       if (object.hasOwnProperty(key) && key !== 'type') {
         if (typeof object[key] === 'string') {
@@ -350,6 +349,9 @@ class CommonClient {
         } else if (typeof object[key] === 'object') {
           this.editObjectData(object[key]);
         }
+      }
+      if (type !== '') {
+        object['type'] = type;
       }
     }
   }
@@ -417,27 +419,6 @@ class CommonClient {
       .execute(function (content) {
         return (tinyMCE.activeEditor.setContent(content));
       }, content);
-  }
-
-  editObjectData(object, type = '') {
-    for (let key in object) {
-      if (object.hasOwnProperty(key) && key !== 'type') {
-        if (typeof object[key] === 'string') {
-          parseInt(object[key]) ? object[key] = (parseInt(object[key]) + 10).toString() : object[key] += 'update';
-        } else if (typeof object[key] === 'number') {
-          object[key] += 10;
-        } else if (typeof object[key] === 'object') {
-          this.editObjectData(object[key]);
-        }
-      }
-      if (type !== '') {
-        object['type'] = type;
-      }
-    }
-  }
-
-  deleteObjectElement(object, pos) {
-    delete object[pos];
   }
 
   setAttributeById(selector) {
