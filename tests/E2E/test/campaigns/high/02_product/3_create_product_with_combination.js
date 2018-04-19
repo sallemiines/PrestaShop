@@ -1,4 +1,5 @@
 const {AddProductPage} = require('../../../selectors/BO/add_product_page');
+const {CommonSelectors} = require('../../../selectors/BO/common_selectors');
 const {AccessPageBO} = require('../../../selectors/BO/access_page');
 const {AccessPageFO} = require('../../../selectors/FO/access_page');
 const {SearchProductPage} = require('../../../selectors/FO/search_product_page');
@@ -74,7 +75,7 @@ scenario('Create product with combination in the Back Office', client => {
      **/
     test('should check the appearance of the first generated combination ', () => client.waitForExist(AddProductPage.combination_first_table));
     /**** END ****/
-    test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(AddProductPage.close_validation_button));
+    test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(CommonSelectors.close_validation_button));
     test('should choose the size "S" and color "Beige"', () => {
       return promise
         .then(() => client.createCombination(AddProductPage.combination_size_m, AddProductPage.combination_color_beige))
@@ -89,7 +90,7 @@ scenario('Create product with combination in the Back Office', client => {
      **/
     test('should check the appearance of the second generated combination ', () => client.waitForExist(AddProductPage.combination_second_table));
     /**** END ****/
-    test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(AddProductPage.close_validation_button));
+    test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(CommonSelectors.close_validation_button));
     test('should click on "Edit" first combination', () => {
       return promise
         .then(() => client.getCombinationData(1))
@@ -192,7 +193,7 @@ scenario('Create product with combination in the Back Office', client => {
 
     scenario('Save Product', client => {
       test('should click on "SAVE" button', () => client.waitForExistAndClick(AddProductPage.save_product_button));
-      test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(AddProductPage.close_validation_button));
+      test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(CommonSelectors.close_validation_button));
       test('should logout successfully from the Back Office', () => client.signOutBO());
     }, 'product/product');
 }, 'product/product');

@@ -1,7 +1,7 @@
 const {AccessPageBO} = require('../../../selectors/BO/access_page');
 const {AccessPageFO} = require('../../../selectors/FO/access_page');
 const {Translations} = require('../../../selectors/BO/international/translations');
-const {AddProductPage} = require('../../../selectors/BO/add_product_page');
+const {CommonSelectors} = require('../../../selectors/BO/common_selectors');
 const {Menu} = require('../../../selectors/BO/menu.js');
 
 scenario('Edit a translation', () => {
@@ -21,7 +21,7 @@ scenario('Edit a translation', () => {
   }, 'common_client');
   scenario('Save change', client => {
     test('should click on "Save" button ', () => client.scrollWaitForExistAndClick(Translations.save_button));
-    test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(AddProductPage.close_validation_button));
+    test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(CommonSelectors.close_validation_button));
     test('should logout successfully from the Back Office', () => client.signOutBO());
   }, 'common_client');
   scenario('Login in the Front Office', client => {

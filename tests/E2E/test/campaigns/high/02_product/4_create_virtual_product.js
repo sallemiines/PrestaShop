@@ -1,4 +1,5 @@
 const {AddProductPage} = require('../../../selectors/BO/add_product_page');
+const {CommonSelectors} = require('../../../selectors/BO/common_selectors');
 const {AccessPageBO} = require('../../../selectors/BO/access_page');
 const {AccessPageFO} = require('../../../selectors/FO/access_page');
 const {SearchProductPage} = require('../../../selectors/FO/search_product_page');
@@ -98,7 +99,7 @@ scenario('Create virtual Product in the Back Office', client => {
 
   scenario('Save Product', client => {
     test('should click on "SAVE"', () => client.waitForExistAndClick(AddProductPage.save_product_button));
-    test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(AddProductPage.close_validation_button));
+    test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(CommonSelectors.close_validation_button));
     test('should logout successfully from the Back Office', () => client.signOutBO());
   }, 'product/product');
 }, 'product/product', true);

@@ -1,7 +1,7 @@
 const {AccessPageBO} = require('../../../selectors/BO/access_page');
 const {Menu} = require('../../../selectors/BO/menu');
 const {ModulePage} = require('../../../selectors/BO/module_page');
-const {AddProductPage} = require('../../../selectors/BO/add_product_page');
+const {CommonSelectors} = require('../../../selectors/BO/common_selectors');
 const module_common_scenarios = require('../../common_scenarios/module');
 let promise = Promise.resolve();
 
@@ -30,7 +30,7 @@ scenario('Check notification module in the Back Office', () => {
     test('should check that the configured module is not visible in the "Notifications" tab', () => client.checkIsNotVisible(ModulePage.configure_module.replace('%moduleTechName', 'ps_wirepayment')));
   }, 'common_client');
   scenario('Reset the configured module', client => {
-    module_common_scenarios.resetModule(client, ModulePage, AddProductPage, Menu, 'Bank transfer', 'ps_wirepayment');
+    module_common_scenarios.resetModule(client, ModulePage, CommonSelectors, Menu, 'Bank transfer', 'ps_wirepayment');
   }, 'common_client');
   scenario('Logout from the Back Office', client => {
     test('should logout successfully from the Back Office', () => client.signOutBO());

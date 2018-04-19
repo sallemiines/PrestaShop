@@ -12,7 +12,6 @@ module.exports = {
     product_name_input: '#form_step1_name_1',
     save_product_button: '//*[@id="form"]/div[4]/div[2]/div/button[1]',
     green_validation_notice: '[class="growl growl-notice growl-medium"]',
-    close_validation_button: '.growl-close',
     validation_msg: '//*[@id="growls"]/div/div[3]',
     red_validation_notice: '[class="growl growl-error growl-medium"]',
     description_tab: '[href="#description"]',

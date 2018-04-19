@@ -1,4 +1,5 @@
 const {AddProductPage} = require('../../../selectors/BO/add_product_page');
+const {CommonSelectors} = require('../../../selectors/BO/common_selectors');
 const {ProductList} = require('../../../selectors/BO/add_product_page');
 const {AccessPageBO} = require('../../../selectors/BO/access_page');
 const {AccessPageFO} = require('../../../selectors/FO/access_page');
@@ -78,7 +79,7 @@ scenario('Check that the shopping cart dosen\'t allow checkout of zero quantity 
       test('should click on "Quantities"', () => client.scrollWaitForExistAndClick(AddProductPage.product_quantities_tab, 50));
       test('should set the "Quantity"', () => client.waitAndSetValue(AddProductPage.product_quantity_input, '-1'));
       test('should click on "SAVE" button', () => client.waitForExistAndClick(AddProductPage.save_product_button));
-      test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(AddProductPage.close_validation_button));
+      test('should check that the success alert message is well displayed', () => client.waitForExistAndClick(CommonSelectors.close_validation_button));
       test('should go to "Product Settings" page', () => client.waitForExistAndClick(Menu.Sell.Catalog.catalog_menu));
       test('should reset filter', () => client.waitForExistAndClick(AddProductPage.catalog_reset_filter));
     }, 'product/product');

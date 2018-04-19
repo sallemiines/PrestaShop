@@ -1,4 +1,5 @@
 const {AddProductPage} = require('../../selectors/BO/add_product_page');
+const {CommonSelectors} = require('../../selectors/BO/common_selectors');
 const {resetModule} = require('./module');
 const {Menu} = require('../../selectors/BO/menu');
 const {ModulePage} = require('../../selectors/BO/module_page');
@@ -24,7 +25,7 @@ module.exports = {
   },
   resetWelcomeModule: function (OnBoarding) {
     scenario('Reset the module "Welcome" ', client => {
-      resetModule(client, ModulePage, AddProductPage, Menu, "Welcome", "welcome");
+      resetModule(client, ModulePage, CommonSelectors, Menu, "Welcome", "welcome");
       test('should click on "RESUME" button', () => client.waitForExistAndClick(OnBoarding.resume_button));
     }, 'common_client');
   },

@@ -1,6 +1,6 @@
 const {AccessPageBO} = require('../../../selectors/BO/access_page');
 const {ModulePage} = require('../../../selectors/BO/module_page');
-const {AddProductPage} = require('../../../selectors/BO/add_product_page');
+const {CommonSelectors} = require('../../../selectors/BO/common_selectors');
 const module_common_scenarios = require('../../common_scenarios/module');
 const {Menu} = require('../../../selectors/BO/menu.js');
 let promise = Promise.resolve();
@@ -29,7 +29,7 @@ scenario('Install "PrestaShop Security" module', () => {
     module_common_scenarios.checkConfigPage(client, ModulePage, "prestafraud");
   }, 'common_client');
   scenario('Uninstall "PrestaShop Security" module', client => {
-    module_common_scenarios.uninstallModule(client, ModulePage, AddProductPage, "prestafraud");
+    module_common_scenarios.uninstallModule(client, ModulePage, CommonSelectors, "prestafraud");
   }, 'common_client');
   scenario('Logout from the Back Office', client => {
     test('should logout successfully from the Back Office', () => client.signOutBO());
