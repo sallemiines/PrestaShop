@@ -201,6 +201,10 @@ module.exports = {
     action_duplicate_button: '(//*[@id="product_catalog_list"]//tbody//div[@class="btn-group-action"]//a[contains(@onclick,"duplicate")])[%POS]',
     action_delete_button: '(//*[@id="product_catalog_list"]//tbody//div[@class="btn-group-action"]//a[contains(@onclick,"delete")])[%POS]',
     delete_now_modal_button: '//*[@id="catalog_deletion_modal"]//button[contains(text(), "Delete now")]',
-    search_no_results: '//*[@id="product_catalog_list"]//tbody/tr[1]/td'
+    search_no_results: '//*[@id="product_catalog_list"]//tbody/tr[1]/td',
+    pagination_next: '//*[@id="pagination_next_url"]',
+    pagination_previous: '//*[@id="product_catalog_list"]//div//li[@class="page-item previous "]//a[@class="page-link"]',
+    paginator_jump_page_input:'//*[@id="product_catalog_list"]//div[@class="row justify-content-center"]//li[@class="page-item active"]//input[@name="paginator_jump_page"]',
+    paginator_limit_list: '//*[@id="paginator_select_page_limit"]'
   }
 };

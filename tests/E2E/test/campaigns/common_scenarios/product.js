@@ -165,5 +165,42 @@ module.exports = {
     });
     test('should check that the current page is equal to "' + pageNumber + '"', () => client.checkTextValue(productPage.current_page, pageNumber));
     test('should check that the value page in URL is equal to "' + pageNumber + '"', () => client.checkParamFromURL('page', pageNumber));
+  },
+
+  checkPaginationBO(addProductPage, productList, buttonName, pageNumber, paginateLimit, close, paginationPage = false) {
+    scenario('Navigate between catalog pages and set the paginate limit equal to "' + paginateLimit + '"', client => {
+      let selectorButton = buttonName === 'Next' ? productList.pagination_next : productList.pagination_previous;
+      test('should go to "Catalog" page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.products_submenu));
+      test('should change the paginate select page limit to "' + paginateLimit + '"', () => client.waitAndSelectByValue(productList.paginator_limit_list, paginateLimit));
+      test('should check that the current page is equal to "' + pageNumber + '"', () => client.checkAttributeValue(productList.paginator_jump_page_input, 'value', pageNumber, 'contain', 3000));
+      test('should check that the number of products is less or equal "' + paginateLimit + '"', () => {
+        return promise
+          .then(() => client.getProductPageNumber('product_catalog_list'))
+          .then(() => expect(global.productsPageNumber).to.be.at.most(paginateLimit));
+      });
+      if (paginationPage) {
+        test('should check and close the symfony toolbar', () => {
+          return promise
+            .then(() => client.isVisible(addProductPage.symfony_toolbar))
+            .then(() => {
+              if (global.isVisible) {
+                client.waitForExistAndClick(addProductPage.symfony_toolbar);
+              }
+            });
+        });
+        test('should click on "' + buttonName + '" button', () => {
+          return promise
+            .then(() => client.isVisible(selectorButton))
+            .then(() => client.clickPageNextOrPrevious(selectorButton));
+        });
+        test('should check that the current page is equal to 2', () => client.checkAttributeValue(productList.paginator_jump_page_input, 'value', '2', 'contain', 3000));
+        test('should set the "Page value" input', () => {
+          return promise
+            .then(() => client.waitAndSetValue(productList.paginator_jump_page_input, pageNumber))
+            .then(() => client.keys('Enter'))
+        });
+        test('should check that the current page is equal to "' + pageNumber + '"', () => client.checkAttributeValue(productList.paginator_jump_page_input, 'value', pageNumber, 'contain', 3000));
+      }
+    }, 'product/product', (close === 'close' ? true : false));
   }
 };
