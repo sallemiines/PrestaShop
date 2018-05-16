@@ -23,6 +23,10 @@ module.exports = {
         select_category: '//*[@id="table-category"]/tbody/tr/td[1]/input',
         action_group_button: '//*[@id="form-category"]//div[contains(@class, "bulk-actions")]/button[contains(@class, "dropdown-toggle")]',
         delete_action_group_button: '//*[@id="form-category"]//a[contains(@onclick, "Delete selected")]',
-        category_number_span: '//*[@id="form-category"]//span[@class="badge"]'
+        category_number_span: '//*[@id="form-category"]//span[@class="badge"]',
+        category_name:'//*[@id="table-category"]//tr[%ID]//td[3]',
+        sub_category_name:'//form[@action="index.php?controller=AdminCategories&id_category=3&token=706ad704a266cf07d4196b31a9c86d1b#category"]//table[@id="table-category"]//tr[%ID]//td[3]',
+        view_button:'//*[@id="table-category"]//tr[%ID]//td[7]//a[@title="View"]',
+
     }
 };

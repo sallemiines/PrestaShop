@@ -179,7 +179,10 @@ module.exports = {
     symfony_toolbar: '//*[contains (@id, "sfToolbarMainContent")]/a',
     summary_tinymce_buttons: '//*[@id="description_short"]//div[contains(@class, "mce-toolbar-grp")]',
     combination_first_table: '//*[@id="accordion_combinations"]',
-    combination_second_table: '//*[@id="accordion_combinations"]//tr[2]'
+    combination_second_table: '//*[@id="accordion_combinations"]//tr[2]',
+    expand_button:'//*[@id="categories"]/div[1]/fieldset/div/div[5]/span[1]',
+    selected_category:'//*[@id="form_step1_categories"]/ul/li[2]/ul/li[2]/div/label/input[1]',
+    accessories_category:'//*[@id="choice_tree"]/ul/li/ul/li[2]/div/label/input',
   },
 
   ProductList: {
@@ -199,6 +202,14 @@ module.exports = {
     action_duplicate_button: '(//*[@id="product_catalog_list"]//tbody//div[@class="btn-group-action"]//a[contains(@onclick,"duplicate")])[%POS]',
     action_delete_button: '(//*[@id="product_catalog_list"]//tbody//div[@class="btn-group-action"]//a[contains(@onclick,"delete")])[%POS]',
     delete_now_modal_button: '//*[@id="catalog_deletion_modal"]//button[contains(text(), "Delete now")]',
-    search_no_results: '//*[@id="product_catalog_list"]//tbody/tr[1]/td'
+    search_no_results: '//*[@id="product_catalog_list"]//tbody/tr[1]/td',
+    category_list: '//*[@id="product_catalog_list"]/div[2]/div/table/tbody/tr[%ID]/td[5]',
+    category: '//*[@id="choice_tree"]/ul/li/ul/li[%ID]/div/label',
+    subCat: '//*[@id="choice_tree"]/ul/li/ul/li[%I]/ul/li[%J]/div/label',
+    categories_filters: '//*[@id="product_catalog_list"]/div[2]/div/table/tbody/tr[%ID]/td[5]',
+    pencil: '//*[@id="product_catalog_list"]/div[2]/div/table/tbody/tr[%ID]/td[10]/div/div/a[1]/i',
+    click_outside:'//*[@id="main-div"]/div[3]/div/div/div[2]/div/div[1]/div',
+    filter_by_catrgory_button:'//*[@id="product_catalog_category_tree_filter"]/button',
+    expand_filter_button:'//*[@id="product_catalog_category_tree_filter_expand"]',
   }
 };

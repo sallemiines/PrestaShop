@@ -2,7 +2,9 @@ let CommonClient = require('./../common_client');
 const {AddProductPage} = require('../../selectors/BO/add_product_page');
 const {ProductList} = require('../../selectors/BO/add_product_page');
 let data = require('./../../datas/product-data');
+const {CategorySubMenu} = require('../../selectors/BO/catalogpage/category_submenu');
 let path = require('path');
+let promise = Promise.resolve();
 
 global.productIdElement = [];
 global.productsTable = [];
@@ -238,6 +240,15 @@ class Product extends CommonClient {
           }, 1000 * global.productsPageNumber);
       });
   }
+
+  checkItemsNumber(className, categoriesNumber) {
+    return this.client
+      .execute(function (className) {
+        count = document.getElementsByClassName(className).length;
+        return count;
+      }, className).then((count) => expect(count.value).to.be.equal(categoriesNumber))
+  }
+
 
 }
 

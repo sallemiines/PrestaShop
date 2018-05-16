@@ -153,11 +153,16 @@ class CommonClient {
         .waitForExist(selector, timeout)
         .then(() => this.client.getText(selector))
         .then((variable) => global.tab[globalVar] = variable.split(': ')[1]);
+
     } else {
       return this.client
         .waitForExist(selector, timeout)
         .then(() => this.client.getText(selector))
-        .then((variable) => global.tab[globalVar] = variable);
+        .then((variable) => {
+          global.tab[globalVar] = variable;
+          //console.log(globalVar);
+          //console.log(tab[globalVar]);
+        });
     }
   }
 
@@ -165,7 +170,10 @@ class CommonClient {
     return this.client
       .waitForExist(selector, timeout)
       .then(() => this.client.getAttribute(selector, attribute))
-      .then((variable) => global.tab[globalVar] = variable);
+      .then((variable) => {
+        global.tab[globalVar] = variable;
+        console.log(tab[globalVar]);
+      });
   }
 
   checkTextValue(selector, textToCheckWith, parameter = 'equal', pause = 0) {
@@ -445,6 +453,17 @@ class CommonClient {
         document.getElementById(selector).style.display = 'none';
       }, selector);
   }
+
+
+  getTextValue(selector) {
+    return this.client
+      .waitForVisible(selector, 90000)
+      .getText(selector)
+      .then(function (text) {
+        global.text = text;
+      })
+  }
+
 }
 
 module.exports = CommonClient;
