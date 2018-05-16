@@ -176,6 +176,7 @@ class CommonClient {
         .waitForExist(selector, timeout)
         .then(() => this.client.getText(selector))
         .then((variable) => global.tab[globalVar] = variable.split(': ')[1]);
+
     } else {
       return this.client
         .waitForExist(selector, timeout)

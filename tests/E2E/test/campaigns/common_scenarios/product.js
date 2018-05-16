@@ -2,6 +2,9 @@ const {Menu} = require('../../selectors/BO/menu.js');
 let promise = Promise.resolve();
 const {ProductList} = require('../../selectors/BO/add_product_page');
 const {AddProductPage} = require('../../selectors/BO/add_product_page');
+const {CategorySubMenu} = require('../../selectors/BO/catalogpage/category_submenu');
+global.categories = new Array('Home');
+global.productCategories = new Array('Home');
 
 /**** Example of product data ****
  * var productData = {
@@ -232,5 +235,99 @@ module.exports = {
       if (close)
         test('should set the "item per page" to 20 (back to normal)', () => client.waitAndSelectByValue(ProductList.item_per_page, 20));
     }, 'product/product', close);
+  },
+  getCategories(categoriesNumber) {
+    scenario('Check categories', client => {
+      for (let i = 1; i <= categoriesNumber; i++) {
+        test('should go to categories page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.category_submenu));
+        test('should get the name of category', () => {
+          return promise
+            .then(() => client.getTextInVar(CategorySubMenu.category_name.replace('%ID', i), "category"))
+            .then(() => categories [tab["category"]] = new Array())
+        });
+
+        test('should check the view button visibility and extract the sub categories list ', () => {
+          return promise
+            .then(() => client.isVisible(CategorySubMenu.view_button.replace('%ID', i)))
+            .then(() => {
+              let isVisible = global.isVisible;
+              if (isVisible) {
+                return promise
+                  .then(() => client.waitForExistAndClick(CategorySubMenu.view_button.replace('%ID', i)))
+                  .then(() => client.getProductPageNumber('table-category'))
+                  .then(() => {
+                    let subCat = global.productsPageNumber;
+                    for (let j = 1; j <= subCat; j++) {
+                      promise
+                        .then(() => client.getTextInVar(CategorySubMenu.category_name.replace('%ID', j), "subCategory"))
+                        .then(() => categories [tab["category"]].push(tab["subCategory"]))
+                    }
+                  })
+              }
+            })
+        });
+      }
+    }, 'product/product');
+  },
+  checkCategories(categoriesNumber) {
+    scenario('Check categories', client => {
+      test('should go to products page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.products_submenu));
+      test('should click on "Filter by categories" button', () => client.waitForExistAndClick(ProductList.filter_by_catrgory_button));
+      test('should click on "Expand" button', () => client.waitForExistAndClick(ProductList.expand_filter_button));
+      for (let i = 1; i <= categoriesNumber; i++) {
+        test('should get the name of category', () => {
+          return promise
+            .then(() => client.getTextInVar(ProductList.category.replace('%ID', i), "productCategory"))
+            .then(() => productCategories [tab["productCategory"]] = new Array())
+        });
+        test('should check the view button visibility', () => {
+          return promise
+            .then(() => client.isVisible(ProductList.subCat.replace('%I', i).replace('%J', i)))
+            .then(() => {
+              let isVis = global.isVisible;
+              if (isVis) {
+                return promise
+                  .then(() => {
+                    for (let j = 1; j <= 2; j++) {
+                      promise
+                        .then(() => client.getTextInVar(ProductList.subCat.replace('%I', i).replace('%J', j), 'psubCategory'))
+                        .then(() => productCategories [tab["productCategory"]].push(tab["psubCategory"]))
+                    }
+                  })
+              }
+            })
+        });
+      }
+      test('should check that the list categories is existing in the catalog page', () => {
+        return promise
+          .then(() => expect(categories).to.deep.equal(productCategories))
+      });
+      test('should choose the "Accessories" category from the list', () => client.waitForExistAndClick(AddProductPage.accessories_category));
+      test('should click outside', () => client.waitForExistAndClick(ProductList.click_outside));
+      test('should count the filtered products ', () => client.getProductPageNumber('product_catalog_list'));
+      for (let k = 1; k <= 11; k++) {
+        test('should check that the chosen category is already selected', () => {
+          return promise
+            .then(() => client.getTextInVar(ProductList.categories_filters.replace('%ID', k), 'cat'))
+            .then(() => console.log('tab cat' + tab['cat']))
+            .then(() => {
+              let subCategory_number = Object.keys(productCategories['Accessories']).length;
+              for (let b = 0; b <= subCategory_number - 1; b++) {
+                if (tab['cat'] !== productCategories['Accessories'][b]) {
+                  promise
+                    .then(() => console.log('productCategories' + k + productCategories['Accessories'][b]))
+                    .then(() => client.waitForExistAndClick(ProductList.pencil.replace('%ID', k)))
+                    .then(() => client.scrollWaitForExistAndClick(AddProductPage.expand_button))
+                    .then(() => client.getAttributeInVar(AddProductPage.selected_category, 'checked', 'attributeVariable'))
+                    .then(() => client.waitForExistAndClick(Menu.Sell.Catalog.products_submenu));
+                }
+                else {
+                  console.log('exist !!!!! ' )
+                }
+              }
+            })
+        });
+      }
+    }, 'product/product');
   }
 };
