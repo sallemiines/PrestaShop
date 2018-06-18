@@ -1,6 +1,6 @@
 module.exports = {
   Movement:{
-    tabs: '//*[@id="tab"]/li[2]/a',
+    tabs: '//*[@id="head_tabs"]/ul/li[2]/a',
     variation: '(//*[@id="app"]//span[contains(@class,"qty-number")]/span)[1]',
     variation_value: '(//*[@id="app"]//span[contains(@class,"qty-number")]/span)[%P]',
     quantity_value: '(//*[@id="app"]//span[contains(@class,"qty-number")])[%P]',

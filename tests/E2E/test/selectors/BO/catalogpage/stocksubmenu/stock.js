@@ -10,7 +10,15 @@ module.exports = {
     add_quantity_button: '(//*[@id="app"]//span[contains(@class,"ps-number-up")])[1]',
     remove_quantity_button: '(//*[@id="app"]//span[contains(@class,"ps-number-down")])[1]',
     success_panel: '//*[@id="growls"]',
-    search_input:'(//*[@id="search"]//input[contains(@class,"input")])[1]',
-    search_button:'//*[@id="search"]//button[contains(@class,"search-button")]'
+    search_input: '(//*[@id="search"]//input[contains(@class,"input")])[1]',
+    search_button: '//*[@id="search"]//button[contains(@class,"search-button")]',
+    check_sign: '//*[@id="app"]//button[@class="check-button"]',
+    green_validation: '//*[@id="search"]/div[2]/div/button',
+    physical_column: '//*[@id="app"]//div//table[@class="table"]//td[5]',
+    available_column: '//*[@id="app"]//div//table[@class="table"]//td[7]',
+    date_time_column: '//*[@id="app"]//div/table[@class="table"]//tr[%O]/td[5]',
+    reference_product_column: '//*[@id="app"]//div/table[@class="table"]//tr[%O]/td[2]',
+    employee_column: '//*[@id="app"]//div/table[@class="table"]//tr[%O]/td[6]',
+    product_column: '//*[@id="app"]//div/table[@class="table"]//tr[%O]/td[1]'
   }
 };

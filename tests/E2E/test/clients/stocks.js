@@ -19,7 +19,8 @@ class ModifyQuantity extends CommonClient {
       .then((text) => global.tab["productQuantity"] = text)
       .waitAndSetValue(Stock.product_quantity_input.replace('%O', order), quantity)
       .then(() => this.client.getText(Stock.product_quantity_modified.replace('%O', order)))
-      .then((text) => expect(text.substring(14)).to.be.equal((Number(global.tab["productQuantity"]) + quantity).toString()));
+      .then((text) => expect(text.substring(14)).to.be.equal((Number(global.tab["productQuantity"]) + quantity).toString()))
+      .then(() => console.log(global.tab["productQuantity"]))
   }
 
   checkMovement(selector, order, quantity, variation, type) {
@@ -51,6 +52,35 @@ class ModifyQuantity extends CommonClient {
       promise = client.checkMovement(Movement, 1, "50", "+", "Employee Edition");
       return promise.then(() => client.checkMovement(Movement, 2, "15", "+", "Employee Edition"));
     }
+  }
+
+  modifyQuantity(Stock, order, quantity, selector) {
+    return this.client
+      .pause(1000)
+      .then(() => this.client.moveToObject(Stock.product_quantity_input.replace('%O', 1)))
+      .then(() => this.client.waitForExistAndClick(selector))
+      .then(() => this.client.pause(2000))
+      .then(() => this.client.getText(Stock.product_quantity_modified.replace('%O', order)))
+      .then((text) => global.tab["text"] = text)
+      .then(() => expect(global.tab["text"].substring(14)).to.be.equal(quantity))
+  }
+
+  checkDate(Stock, order) {
+    return this.client
+      .pause(2000)
+      .then(() => this.client.getText(Stock.date_time_column.replace('%O', order)))
+      .then((text) => global.tab["text"] = text)
+      .then(() => expect(new Date().toISOString().substring(0, 10)).to.have.string(global.tab["text"].substring(0, 10)))
+  }
+
+  checkHour(Stock, order) {
+    let hour = new Date().getHours() + 1;
+    return this.client
+      .pause(2000)
+      .then(() => this.client.getText(Stock.date_time_column.replace('%O', order)))
+      .then((text) => global.tab["text"] = text)
+      .then((text) => global.tab["text"] = text)
+      .then(() => expect(hour.toString()).to.deep.equal(global.tab["text"].substring(11, 13)))
   }
 }
 
