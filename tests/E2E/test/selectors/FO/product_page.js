@@ -27,6 +27,10 @@ module.exports = {
     product_discounts_table: '//*[@id="add-to-cart-or-refresh"]//tbody/tr[%R]/td[%D]',
     product_summary: '(//*[@itemprop="description"]//p)[1]',
     product_description: '//*[@id="description"]',
-    product_detail_tab: '//*[@role="tablist"]//li[2]'
+    product_detail_tab: '//*[@role="tablist"]//li[2]',
+    widget_after_product_thumbs: '//*[@id="content"]//p[contains(text(),"%NAME")]',
+    second_widget_after_product_thumbs:'//*[@id="content"]//div[2]/p',
+    product_footer_linkwidget:'//*[@id="main"]/div[2]//p[contains(text(),"%DISPLAYFOOTERPRODUCT")]',
+    second_product_footer_linkwidget:'//*[@id="main"]/div[2]/div/div[2]/p'
   }
 };

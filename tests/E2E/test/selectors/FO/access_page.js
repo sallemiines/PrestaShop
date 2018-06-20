@@ -13,6 +13,10 @@ module.exports = {
     new_products_block: '//h1[contains(text(), "New products")]',
     sitemap: '//*[@id="link-static-page-sitemap-2"]',
     page_link: '//*[@id="main"]//a[@title="%pageName"]',
-    page_content: '//*[@id="content"]/p'
+    page_content: '//*[@id="content"]/p',
+    footer_block:'//*[@id="footer"]//p[contains(text(),"%FOOTERBLOCKNAME")]',
+    second_footer_block:'//*[@id="footer"]//div[@class="col-md-6 wrapper"][2]/p',
+    home_link_widget:'//*[@id="content"]/div[3]/div//p[contains(text(),"%HOMELINKWIDGET")]',
+    second_home_link_widget:'//*[@id="content"]/div[3]//div[2]//p',
   }
 };
