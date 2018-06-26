@@ -14,9 +14,16 @@ module.exports = {
     sitemap: '//*[@id="link-static-page-sitemap-2"]',
     page_link: '//*[@id="main"]//a[@title="%pageName"]',
     page_content: '//*[@id="content"]/p',
-    footer_block:'//*[@id="footer"]//p[contains(text(),"%FOOTERBLOCKNAME")]',
-    second_footer_block:'//*[@id="footer"]//div[@class="col-md-6 wrapper"][2]/p',
-    home_link_widget:'//*[@id="content"]/div[3]/div//p[contains(text(),"%HOMELINKWIDGET")]',
-    second_home_link_widget:'//*[@id="content"]/div[3]//div[2]//p',
+    footer_block: '//*[@id="footer"]//p[contains(text(),"%FOOTERBLOCKNAME")]',
+    second_footer_block: '//*[@id="footer"]//div[@class="col-md-6 wrapper"][2]/p',
+    home_link_widget: '//*[@id="content"]/div[3]/div//p[contains(text(),"%HOMELINKWIDGET")]',
+    second_home_link_widget: '//*[@id="content"]/div[3]//div[2]//p',
+    nav_link_widget: '//*[@id="header"]//div[@class="col-md-4 links"]//div[@class="col-md-6 wrapper"]//p[contains(text(),"%NAVLINKWIDGET")]',
+    second_nav_link_widget: '//*[@id="header"]//div[@class="col-md-4 links"]//div[3]//p',
+    nav_full_width_link_widget: '//*[@id="header"]/div[3]/div//p[contains(text(),"%NAVFULLWIDTHLINKWIDGET")]',
+    nav_left_column_link_widget: '//*[@id="left-column"]/div[3]/div//p[contains(text(),"%NAVLEFTCOLUMNLINKWIDGET")]',
+    nav_shopping_cart_link_widget: '//*[@id="main"]//div[@class="card cart-summary"]//p[contains(text(),"%NAVSHOPPINGCARTLINKWIDGET")]',
+    nav_shopping_cart_footer_link_widget: '//*[@id="main"]//div[@class="cart-grid row"]//p[contains(text(),"%NAVSHOPPINGCARTFOOTERLINKWIDGET")]',
+
   }
 };
