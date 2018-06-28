@@ -63,10 +63,12 @@ module.exports = {
   },
 
 
-  checkChanges: function (Menu, Movement, Stock, order, productData, operator, updatedQuantity, arrowUP) {
+  checkChanges: function (Menu, Movement, Stock, order, productData, operator, updatedQuantity, checkSign ) {
     scenario('check the changes made', client => {
-      if (arrowUP) {
-        test('Click on the "check" sign next to the input field', () => client.waitForExistAndClick(Stock.check_sign));
+
+
+      if (checkSign) {
+        test('Click on the "check" sign ', () => client.waitForExistAndClick(Stock.check_sign));
       }
       else {
         test('Click on the "apply new quantities" button', () => client.waitForExistAndClick(Stock.group_apply_button));

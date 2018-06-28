@@ -26,10 +26,10 @@ scenario('Increase & decrease the quantity for one product using the arrow up/do
   commonStock.updateStockProductQuantity(Menu, Movement, Stock, productData, 3, 3, '-');
   scenario('Logout from the Back Office', client => {
     test('should logout successfully from Back Office', () => client.signOutBO());
-  }, 'stocks');
-}, 'stocks', true);
+  }, 'stocks', true);
+}, 'stocks');
 
-scenario('Enter a negative quantity with the arrow down for one product in the field', () => {
+scenario('Enter a negative quantity with the arrow down for one product in the field ', () => {
   scenario('Login in the Back Office', client => {
     test('should open the browser', () => client.open());
     test('should login successfully in the Back Office', () => client.signInBO(AccessPageBO));
@@ -40,16 +40,15 @@ scenario('Enter a negative quantity with the arrow down for one product in the f
   }, 'stocks');
 }, 'stocks', true);
 
-
 scenario('Change the quantity for one product entering the value in the field', client => {
   scenario('Login in the Back Office', client => {
     test('should open the browser', () => client.open());
     test('should login successfully in the Back Office', () => client.signInBO(AccessPageBO));
   }, 'stocks');
-  scenario('Change the quantity for one product entering the value in the field', client => {
+  scenario('Change the quantity for one product entering the value in the field, and click on the "check" sign', () => {
     test('should go to "Stocks" page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.stocks_submenu));
     test('should search for the product', () => client.searchByValue(Stock.search_input, Stock.search_button, productData.name + date_time));
-    test('should set the "Quantity" of the second product to 50', () => client.modifyProductQuantity(Stock, 1, 50));
+    test('should set the "Quantity" of the product to 50', () => client.modifyProductQuantity(Stock, 1, 50));
   }, 'stocks');
   commonStock.checkChanges(Menu, Movement, Stock, 5, productData, '+', 50, true)
   scenario('Logout from the Back Office', client => {
@@ -57,20 +56,75 @@ scenario('Change the quantity for one product entering the value in the field', 
   }, 'stocks');
 }, 'stocks', true);
 
-/*
-scenario('Enter a negative quantity with keyboard for one product in the field', client => {
+//BOOM-5824
+scenario('Enter a negative quantity with keyboard for one product in the field ', () => {
   scenario('Login in the Back Office', client => {
     test('should open the browser', () => client.open());
     test('should login successfully in the Back Office', () => client.signInBO(AccessPageBO));
   }, 'stocks');
-  scenario('Change the quantity for one product entering the value in the field', client => {
+  scenario('Change the quantity for one product entering the value in the field, and click on the "check" sign', client => {
     test('should go to "Stocks" page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.stocks_submenu));
     test('should search for the product', () => client.searchByValue(Stock.search_input, Stock.search_button, productData.name + date_time));
-    test('should set the "Quantity" of the second product to 50', () => client.modifyProductQuantity(Stock, 1, -10));
+    test('should set the "Quantity" of the  product -10', () => client.modifyProductQuantity(Stock, 1, -10));
   }, 'stocks');
-  commonStock.checkChanges(Menu, Movement, Stock, 6, productData, '-', -10 , true)
+  commonStock.checkChanges(Menu, Movement, Stock, 6, productData, '-', -10, true);
   scenario('Logout from the Back Office', client => {
     test('should logout successfully from Back Office', () => client.signOutBO());
   }, 'stocks');
+}, 'stocks', true);
+
+
+scenario('Enter a decimal quantity with , for one product in the field  ', () => {
+  scenario('Login in the Back Office', client => {
+    test('should open the browser', () => client.open());
+    test('should login successfully in the Back Office', () => client.signInBO(AccessPageBO));
+  }, 'stocks');
+  scenario('Change the quantity for one product entering the value in the field and click on the "check" sign', client => {
+    test('should go to "Stocks" page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.stocks_submenu));
+    test('should search for the product', () => client.searchByValue(Stock.search_input, Stock.search_button, productData.name + date_time));
+    test('should set the "Quantity" of the product to 10,5', () => client.modifyProductQuantity(Stock, 1, "10,5"));
+    test('should click on the "check" sign ', () => client.waitForExistAndClick(Stock.check_sign));
+    test('should check that the quantity input filed is changed to "0" ', () => client.checkAttributeValue('//*[@id="app"]/div[4]/section/div[2]/table/tbody/tr[1]/td[8]/form/div/input', 'value', 0));
+  }, 'stocks');
+  scenario('Logout from the Back Office', client => {
+    test('should logout successfully from Back Office', () => client.signOutBO());
+  }, 'stocks', true);
 }, 'stocks');
-*/
+
+//BOOM-5790
+scenario('Enter a decimal quantity with . for one product in the field ', () => {
+  scenario('Login in the Back Office', client => {
+    test('should open the browser', () => client.open());
+    test('should login successfully in the Back Office', () => client.signInBO(AccessPageBO));
+  }, 'stocks');
+  scenario('Change the quantity for one product entering the value in the field and click on the "apply new quantities" button', client => {
+    test('should go to "Stocks" page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.stocks_submenu));
+    test('should search for the product', () => client.searchByValue(Stock.search_input, Stock.search_button, productData.name + date_time));
+    test('should set the "Quantity" of the product to 10,5', () => client.modifyProductQuantity(Stock, 1, "12.5"));
+    test('should click on the "apply new quantities" button', () => client.waitForExistAndClick(Stock.group_apply_button));
+    test('should check that the quantity input filed is changed to "0" ', () => client.checkAttributeValue('//*[@id="app"]/div[4]/section/div[2]/table/tbody/tr[1]/td[8]/form/div/input', 'value', 0));
+  }, 'stocks');
+  scenario('Logout from the Back Office', client => {
+    test('should logout successfully from Back Office', () => client.signOutBO());
+  }, 'stocks', true);
+
+}, 'stocks');
+
+scenario('Enter a decimal quantity with , for one product in the field  ', () => {
+  scenario('Login in the Back Office', client => {
+    test('should open the browser', () => client.open());
+    test('should login successfully in the Back Office', () => client.signInBO(AccessPageBO));
+  }, 'stocks');
+  scenario('Change the quantity for one product entering the value in the field and click on the "check" sign', client => {
+    test('should go to "Stocks" page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.stocks_submenu));
+    test('should search for the product', () => client.searchByValue(Stock.search_input, Stock.search_button, productData.name + date_time));
+    test('should set the "Quantity" of the product to 10,5', () => client.modifyProductQuantity(Stock, 1, "10,5"));
+    test('should click on the "apply new quantities" button', () => client.waitForExistAndClick(Stock.group_apply_button));
+    test('should check that the green validation does not appear', () => client.isNotExisting(Stock.green_validation));
+    test('should check that the quantity input filed is changed to "0" ', () => client.checkAttributeValue('//*[@id="app"]/div[4]/section/div[2]/table/tbody/tr[1]/td[8]/form/div/input', 'value', 0));
+  }, 'stocks');
+  scenario('Logout from the Back Office', client => {
+    test('should logout successfully from Back Office', () => client.signOutBO());
+  }, 'stocks', true);
+
+}, 'stocks');
