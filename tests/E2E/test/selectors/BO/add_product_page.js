@@ -207,6 +207,9 @@ module.exports = {
     created_category: '//*[@id="ps_categoryTags"]/span[2]/span',
     preview_link: '//a',
     continue_confirmation: '//*[@id="confirmation_modal"]//button[2]',
+    expand_button:'//*[@id="categories"]/div[1]/fieldset/div/div[5]/span[1]',
+    selected_category:'//*[@id="form_step1_categories"]/ul/li[2]/ul/li[2]/div/label/input[1]',
+    accessories_category:'//*[@id="choice_tree"]/ul/li/ul/li[2]/div/label/input',
   },
 
   ProductList: {

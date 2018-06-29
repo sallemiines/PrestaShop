@@ -195,7 +195,6 @@ module.exports = {
     test('should check that the page value in the URL is equal to "' + pageNumber + '"', () => client.checkParamFromURL('page', pageNumber));
   },
 
-
   checkPaginationBO(nextOrPrevious, pageNumber, itemPerPage, close = false, paginateBetweenPages = false) {
     scenario('Navigate between catalog pages and set the paginate limit equal to "' + itemPerPage + '"', client => {
       let selectorButton = nextOrPrevious === 'Next' ? ProductList.pagination_next : ProductList.pagination_previous;
@@ -236,6 +235,7 @@ module.exports = {
         test('should set the "item per page" to 20 (back to normal)', () => client.waitAndSelectByValue(ProductList.item_per_page, 20));
     }, 'product/product', close);
   },
+
   getCategories(categoriesNumber) {
     scenario('Check categories', client => {
       for (let i = 1; i <= categoriesNumber; i++) {
@@ -269,6 +269,7 @@ module.exports = {
       }
     }, 'product/product');
   },
+
   checkCategories(categoriesNumber) {
     scenario('Check categories', client => {
       test('should go to products page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.products_submenu));
@@ -321,9 +322,6 @@ module.exports = {
                     .then(() => client.getAttributeInVar(AddProductPage.selected_category, 'checked', 'attributeVariable'))
                     .then(() => client.waitForExistAndClick(Menu.Sell.Catalog.products_submenu));
                 }
-                else {
-                  console.log('exist !!!!! ' )
-                }
               }
             })
         });
@@ -331,3 +329,4 @@ module.exports = {
     }, 'product/product');
   }
 };
+
