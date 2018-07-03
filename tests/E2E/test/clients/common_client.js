@@ -494,6 +494,20 @@ class CommonClient {
       .refresh();
   }
 
+  // a supprimer
+  affiche(){
+    return this.client
+      .execute(function(test) {
+        console.log("productCategories");
+        console.log(test);
+      },global.categories)
+
+      .execute(function(tests) {
+        console.log("categories");
+        console.log(tests);
+      },global.productCategories)
+  }
+
 }
 
 module.exports = CommonClient;

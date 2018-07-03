@@ -27,6 +27,9 @@ module.exports = {
     category_description: '//*[@id="category_form"]//div[@class="mce-tinymce mce-container mce-panel"]',
     description: '//*[@id="table-category"]//td[4]',
     category_name:'//*[@id="table-category"]//tr[%ID]//td[3]',
+
+    category_action_button:'//*[@id="table-category"]//tr[%ID]//td[7]//a[contains(@title, "View")]',
+
     sub_category_name:'//form[@action="index.php?controller=AdminCategories&id_category=3&token=706ad704a266cf07d4196b31a9c86d1b#category"]//table[@id="table-category"]//tr[%ID]//td[3]',
     view_button:'//*[@id="table-category"]//tr[%ID]//td[7]//a[@title="View"]'
   }

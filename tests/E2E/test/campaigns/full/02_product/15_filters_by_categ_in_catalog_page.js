@@ -19,14 +19,11 @@ scenario('Filters by categories in catalog page', () => {
       return promise
         .then(() => client.getProductPageNumber('table-category'))
         .then(() => {
-          let categoriesNumber = global.productsPageNumber;
-          if (categoriesNumber !== 0) {
-            commonProduct.getCategories(categoriesNumber);
+          if (global.productsPageNumber !== 0) {
+          // commonProduct.getCategories(global.productsPageNumber);
           }
-          commonProduct.checkCategories(categoriesNumber);
-          //commonProduct.testEquality();
+          commonProduct.checkCategories(global.productsPageNumber);
         });
-
     }, 'product/product');
   }, 'product/product');
 }, 'common_client');

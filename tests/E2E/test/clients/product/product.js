@@ -9,6 +9,7 @@ let promise = Promise.resolve();
 global.productIdElement = [];
 global.productsTable = [];
 global.productsSortedTable = [];
+global.subCatNumber = 0;
 
 class Product extends CommonClient {
 
@@ -250,6 +251,23 @@ class Product extends CommonClient {
       }, className).then((count) => expect(count.value).to.be.equal(categoriesNumber))
   }
 
+  getSubCategoryNumber(i) {
+    return this.client
+      .execute(function (i) {
+        let count
+        try {
+          count = document.getElementById('choice_tree').getElementsByTagName("ul")[i + 1].children.length;
+          return count;
+        }
+        catch(err) {
+          count = 0;
+          return count;
+        }
+      }, i)
+      .then((count) => {
+        global.subCatNumber = count.value;
+      })
+  }
 
 }
 
