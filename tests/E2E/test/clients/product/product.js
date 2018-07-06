@@ -299,6 +299,7 @@ class Product extends CommonClient {
     return this.client
       .waitForVisibleAndClick(ProductList.product_name_link.replace("%ID", global.positionTable[i - 1], 50000))
       .waitForVisible(AddProductPage.product_name_input)
+      .back()
   }
 }
 
