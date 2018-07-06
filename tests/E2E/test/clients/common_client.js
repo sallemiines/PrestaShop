@@ -123,6 +123,10 @@ class CommonClient {
     return this.client.end();
   }
 
+  timeouts(time){
+    return this.client.timeouts(time);
+  }
+
   waitForExistAndClick(selector, pause = 0, timeout = 90000) {
     return this.client
       .pause(pause)
@@ -363,6 +367,10 @@ class CommonClient {
     return this.client.pause(timeout);
   }
 
+  back() {
+    return this.client.back();
+  }
+
   keys(button) {
     return this.client.keys(button);
   }
@@ -448,14 +456,6 @@ class CommonClient {
     return deca[Math.floor(number/10)-2] + 'y-' + special[number%10];
   }
 
-  setAttributeById(selector) {
-    return this.client
-      .execute(function (selector) {
-        document.getElementById(selector).style.display = 'none';
-      }, selector);
-  }
-
-
   /**
    * This function searches the data in the table in case a filter input exists
    * @param selector
@@ -497,6 +497,7 @@ class CommonClient {
   // a supprimer
   affiche(){
     return this.client
+/*
       .execute(function(test) {
         console.log("productCategories");
         console.log(test);
@@ -506,6 +507,14 @@ class CommonClient {
         console.log("categories");
         console.log(tests);
       },global.productCategories)
+
+
+*/
+
+      .execute(function(tests) {
+        console.log("table pos");
+        console.log(tests);
+      },global.positionTable)
   }
 
 }

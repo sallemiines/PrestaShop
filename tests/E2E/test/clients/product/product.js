@@ -254,12 +254,12 @@ class Product extends CommonClient {
   getSubCategoryNumber(i) {
     return this.client
       .execute(function (i) {
-        let count
+        let count;
         try {
           count = document.getElementById('choice_tree').getElementsByTagName("ul")[i + 1].children.length;
           return count;
         }
-        catch(err) {
+        catch (err) {
           count = 0;
           return count;
         }
@@ -269,6 +269,37 @@ class Product extends CommonClient {
       })
   }
 
+  getProductSubCategoryNumber(i) {
+    return this.client
+      .execute(function (i) {
+        let count;
+        try {
+          count = document.getElementById('choice_tree').getElementsByTagName("ul")[i + 1].children.length;
+          return count;
+        }
+        catch (err) {
+          count = 0;
+          return count;
+        }
+      }, i)
+      .then((count) => {
+        global.subCatNumber = count.value;
+      })
+  }
+
+  getProductCategoryList() {
+    return this.client
+      .execute(function () {
+        count = document.getElementById('ps_categoryTags').getElementsByClassName("pstaggerTag").length;
+        return count;
+      }).then((count) => global.productCategoryNumber = count.value)
+  }
+
+  checkProductCategory(i) {
+    return this.client
+      .waitForVisibleAndClick(ProductList.product_name_link.replace("%ID", global.positionTable[i - 1], 50000))
+      .waitForVisible(AddProductPage.product_name_input)
+  }
 }
 
 module.exports = Product;

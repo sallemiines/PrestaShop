@@ -237,6 +237,7 @@ module.exports = {
     pencil: '//*[@id="product_catalog_list"]/div[2]/div/table/tbody/tr[%ID]/td[10]/div/div/a[1]/i',
     click_outside:'//*[@id="main-div"]/div[3]/div/div/div[2]/div/div[1]/div',
     filter_by_catrgory_button:'//*[@id="product_catalog_category_tree_filter"]/button',
-    expand_filter_button:'//*[@id="product_catalog_category_tree_filter_expand"]'
+    expand_filter_button:'//*[@id="product_catalog_category_tree_filter_expand"]',
+    product_category: '//*[@id="ps_categoryTags"]/span[%ID]/span'
   }
 };
