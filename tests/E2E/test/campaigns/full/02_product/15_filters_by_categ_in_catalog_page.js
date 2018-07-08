@@ -20,7 +20,7 @@ scenario('Filters by categories in catalog page', () => {
         .then(() => client.getProductPageNumber('table-category'))
         .then(() => {
           if (global.productsPageNumber !== 0) {
-        //   commonProduct.getCategories(global.productsPageNumber);
+            commonProduct.getCategories(global.productsPageNumber);
           }
           commonProduct.checkCategories(global.productsPageNumber);
         });

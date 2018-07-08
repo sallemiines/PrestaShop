@@ -242,7 +242,7 @@ module.exports = {
     scenario('Check categories', client => {
       for (let i = 1; i <= categoriesNumber; i++) {
         test('should go to categories page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.category_submenu));
-        test('should get the name of category', () => {
+        test('should get the name of the categories', () => {
           return promise
             .then(() => client.getTextInVar(CategorySubMenu.category_name.replace('%ID', i), "category"))
             .then(() => global.categories.HOME[tab["category"]] = [tab["category"]]);
@@ -264,16 +264,13 @@ module.exports = {
                   })
               }
             })
-            .then(() => client.affiche());
         });
       }
     }, 'product/product');
   },
-  /*goToTheProductPageAndCheckCategory(client, i) {
 
-  },*/
   checkCategories(categoriesNumber) {
-    scenario('Check categories', client => {
+    scenario('Check categories in catalog page', client => {
       test('should go to products page', () => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.products_submenu));
       test('should click on "Filter by categories" button', () => client.waitForExistAndClick(ProductList.filter_by_catrgory_button));
       test('should click on "Expand" button', () => client.waitForExistAndClick(ProductList.expand_filter_button));
@@ -298,15 +295,9 @@ module.exports = {
                   })
               }
             })
-            .then(() => client.affiche());
         });
       }
-      /*    test('should check that the list categories is existing in the catalog page', () => {
-              return promise
-                .then(() => expect(categories).to.deep.equal(productCategories))
-            });*/
     }, 'product/product');
-
     scenario('Check category filter result', client => {
       test('should choose the "Accessories" category from the list', () => client.waitForExistAndClick(AddProductPage.accessories_category));
       test('should click outside', () => client.waitForExistAndClick(ProductList.click_outside));
@@ -314,53 +305,26 @@ module.exports = {
       test('should check that all the displayed product have "Accessories" or "Accessories" children as category', () => {
         for (let i = 1; i <= global.productsPageNumber; i++) {
           promise
-            .then(() => client.getTextInVar(ProductList.categories_filters.replace('%ID', i), 'cat'))
+            .then(() => client.getTextInVar(ProductList.categories_filters.replace('%ID', i), 'categoryName'))
             .then(() => {
-              if (productCategories.HOME.Accessories.indexOf(tab['cat']) === -1) {
+              if (productCategories.HOME.Accessories.indexOf(tab['categoryName']) === -1) {
                 global.positionTable.push(i)
               }
             })
-            .then(() => client.affiche());
         }
         return promise
           .then(() => client.pause(2000))
           .then(() => {
-            scenario('aaaaaa', client => {
+            scenario('Check the product belong to the category "Home" belong also to the category "Accessories"', client => {
               for (let i = 1; i <= global.positionTable.length; i++) {
-                test('should dsdsdsdsd', () => client.checkProductCategory(i));
-                test('should dsdsdsdsd', () => {
-                  promise
-                    .then(() => client.getProductCategoryList())
-                    .then(() => {
-                      for (let i = 1; i <= global.productCategoryNumber; i++) {
-
-                      }
-                    })
-                })
+                test('should go to the product who belongs to "Home" category', () => client.checkProductCategory(i));
+                test('should check that the chosen category "Accessories" is checked', () => client.checkAttributeValue(AddProductPage.selected_category, 'checked', 'true'));
+                test('should check that the name of the selected category is equal to "Accessories"', () => client.checkTextValue(AddProductPage.accessories_category_label, 'Accessories'));
+                test('should back to the catalog page ', () => client.back())
               }
             }, 'product/product')
           });
       });
-
-
     }, 'product/product');
   }
 };
-
-
-/*return promise
-  .then(() => client.waitForVisibleAndClick(ProductList.product_name_link.replace('%ID', i)))
-  .then(() => client.getProductCategoryList())
-  .then(() => {
-    for (let j = 1; j <= global.productCategoryNumber; j++) {
-      promise
-        .then(() => client.getTextInVar(ProductList.product_category.replace('%ID', j), 'productCategory'))
-        .then(() => {
-          if (global.tab['productCategory'] !== "Home") {
-            // expect(productCategories.HOME.Accessories).to.include(global.tab['productCategory'])
-          }
-        })
-    }
-  })
-  .then(() => client.pause(2000))
-  .then(() => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.products_submenu))*/
