@@ -1,11 +1,6 @@
 const {AccessPageBO} = require('../../../selectors/BO/access_page');
-const {CatalogPage} = require('../../../selectors/BO/catalogpage/index');
 const {Menu} = require('../../../selectors/BO/menu.js');
-const {ProductList} = require('../../../selectors/BO/add_product_page');
-const {productPage} = require('../../../selectors/FO/product_page');
-const {AddProductPage} = require('../../../selectors/BO/add_product_page');
 const commonProduct = require('../../common_scenarios/product');
-
 let promise = Promise.resolve();
 
 scenario('Filters by categories in catalog page', () => {
