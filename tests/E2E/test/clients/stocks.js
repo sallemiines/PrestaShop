@@ -53,6 +53,17 @@ class ModifyQuantity extends CommonClient {
       return promise.then(() => client.checkMovement(Movement, 2, "15", "+", "Employee Edition"));
     }
   }
+
+  modifyQuantity(Stock, order, quantity, selector) {
+    return this.client
+      .pause(1000)
+      .then(() => this.client.moveToObject(Stock.product_quantity_input.replace('%O', order)))
+      .then(() => this.client.waitForExistAndClick(selector))
+      .then(() => this.client.pause(2000))
+      .then(() => this.client.getText(Stock.product_quantity_modified.replace('%O', order)))
+      .then((text) => global.tab["text"] = text)
+      .then(() => expect(global.tab["text"].substring(14)).to.be.equal(quantity))
+  }
 }
 
 module.exports = ModifyQuantity;

@@ -5,11 +5,18 @@ module.exports = {
     product_quantity_modified: '(//*[@id="app"]//tr[%O]//span[contains(@class,"qty-update")])[1]',
     save_product_quantity_button: '(//*[@id="app"]//button[contains(@class,"check-button")])[1]',
     group_apply_button: '//*[@id="app"]//button[contains(@class,"update-qty")]',
-    add_quantity_button: '(//*[@id="app"]//span[contains(@class,"ps-number-up")])[1]',
-    remove_quantity_button: '(//*[@id="app"]//span[contains(@class,"ps-number-down")])[1]',
+    add_quantity_button: '(//*[@id="app"]//span[contains(@class,"ps-number-up")])[%ITEM]',
+    remove_quantity_button: '(//*[@id="app"]//span[contains(@class,"ps-number-down")])[%ITEM]',
     success_panel: '//*[@id="growls"]',
-    search_input:'(//*[@id="search"]//input[contains(@class,"input")])[1]',
-    search_button:'//*[@id="search"]//button[contains(@class,"search-button")]',
-    sort_product_icon: '//*[@id="app"]//div[@data-sort-col-name="id_product" and @data-sort-direction="asc"]/span[@role="button"]'
+    search_input: '(//*[@id="search"]//input[contains(@class,"input")])[1]',
+    search_button: '//*[@id="search"]//button[contains(@class,"search-button")]',
+    sort_product_icon: '//*[@id="app"]//tr/th[1]//div[@data-sort-col-name="id_product" and @data-sort-direction="%ID"]/span[@role="button"]',
+    check_sign: '//*[@id="app"]//button[@class="check-button"]',
+    physical_column: '//*[@id="app"]//div//table[@class="table"]//tr[%ID]//td[5]',
+    green_validation: '//*[@id="search"]/div[2]/div/button',
+    product_column: '//*[@id="app"]//div/table[@class="table"]//tr[%O]/td[1]',
+    available_column: '//*[@id="app"]//div//table[@class="table"]//tr[%ID]/td[7]',
+    reference_product_column: '//*[@id="app"]//div/table[@class="table"]//tr[%O]/td[2]',
+    employee_column: '//*[@id="app"]//div/table[@class="table"]//tr[%O]/td[6]',
   }
 };

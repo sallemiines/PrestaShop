@@ -27,7 +27,6 @@ scenario('Modify quantity and check the movement of a group of product', client 
   }, 'stocks');
 
   common_scenarios.createProduct(AddProductPage, productData[0]);
-
   common_scenarios.createProduct(AddProductPage, productData[1]);
 
   scenario('Modify quantity and check the movement of a group of product', client => {
