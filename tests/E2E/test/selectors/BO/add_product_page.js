@@ -205,7 +205,8 @@ module.exports = {
     continue_confirmation: '//*[@id="confirmation_modal"]//button[2]',
     search_categories: '//*[@id="ps-select-product-category"]',
     list_categories: '//*[@id="ui-id-1"]/li',
-    default_category: '//*[@id="ps_categoryTags"]/span[1]/a'
+    default_category: '//*[@id="ps_categoryTags"]/span[1]/a',
+    tax_rule:'//*[@id="select2-step2_id_tax_rules_group_rendered-container"]'
   },
 
   ProductList: {
