@@ -3,6 +3,8 @@ const {CheckoutOrderPage} = require('../../selectors/FO/order_page');
 const {accountPage} = require('../../selectors/FO/add_account_page');
 const {OrderPage} = require('../../selectors/BO/order');
 const {Menu} = require('../../selectors/BO/menu.js');
+const {AddProductPage} = require('../../selectors/BO/add_product_page');
+const {ProductList} = require('../../selectors/BO/add_product_page');
 const {ShoppingCarts} = require('../../selectors/BO/order');
 
 let dateFormat = require('dateformat');
@@ -176,5 +178,71 @@ module.exports = {
       test('should compare both informations', () => client.checkExportedFileInfo(1000));
       test('should reset filter', () => client.waitForExistAndClick(ShoppingCarts.reset_button));
     }, 'order', true);
+  },
+
+  updateStatus: function (state) {
+    scenario('Change the order state to "Shipped"', client => {
+      test('should go to the orders list', () => client.goToSubtabMenuPage(Menu.Sell.Orders.orders_menu, Menu.Sell.Orders.orders_submenu));
+      test('should go to the created order', () => client.waitForExistAndClick(OrderPage.order_view_button.replace('%ORDERNumber', 1)));
+      test('should change order state to "Shipped"', () => client.updateStatus(state));
+      test('should click on "Update state " button', () => client.waitForExistAndClick(OrderPage.update_status_button));
+    }, 'order');
+  },
+  getDeliveryInformations:function () {
+    scenario('Get all the order information', client => {
+      test('should get all order information', () => {
+        return promise
+          .then(() => client.getTextInVar(OrderPage.order_id, "OrderID"))
+          .then(() => client.getTextInVar(OrderPage.order_date, "invoiceDate"))
+          .then(() => client.getTextInVar(OrderPage.order_ref, "OrderRef"))
+          .then(() => {
+            client.getTextInVar(OrderPage.product_information, "ProductRef").then(() => {
+              global.tab['ProductRef'] = global.tab['ProductRef'].split('\n')[1];
+              global.tab['ProductRef'] = global.tab['ProductRef'].substring(18);
+            })
+          })
+          .then(() => client.pause(2000))
+          .then(() => {
+            client.getTextInVar(OrderPage.product_information, "ProductCombination").then(() => {
+              global.tab['ProductCombination'] = global.tab['ProductCombination'].split('\n')[0];
+              global.tab['ProductCombination'] = global.tab['ProductCombination'].split(':')[1];
+            })
+          })
+          .then(() => client.pause(2000))
+          .then(() => client.getTextInVar(OrderPage.product_quantity, "ProductQuantity"))
+          .then(() => {
+            client.getTextInVar(OrderPage.product_name_tab, "ProductName").then(() => {
+              global.tab['ProductName'] = global.tab['ProductName'].substring(0, 25);
+            })
+          })
+          .then(() => client.getTextInVar(OrderPage.product_unit_price_tax_included, "UnitPrice"))
+          .then(() => global.tab['UnitPrice'] = global.tab['UnitPrice'].substr(1, global.tab['UnitPrice'].length))
+          .then(() => client.getTextInVar(OrderPage.product_total, "ProductTotal"))
+          .then(() => client.waitForExistAndClick(OrderPage.edit_product_button))
+          .then(() => client.getAttributeInVar(OrderPage.product_unit_price, "value", "TaxExcl"))
+          .then(() => client.pause(2000))
+          .then(() => client.goToSubtabMenuPage(Menu.Sell.Catalog.catalog_menu, Menu.Sell.Catalog.products_submenu))
+          .then(() => client.searchByValue(AddProductPage.catalogue_filter_by_name_input, AddProductPage.catalogue_submit_filter_button, global.tab['ProductName']))
+          .then(() => client.waitForExistAndClick(ProductList.edit_button))
+          .then(() => client.getAttributeInVar(AddProductPage.tax_rule, "title", 'TaxRate'))
+          .then(() => global.tab['TaxRate'] = global.tab['TaxRate'].substr(18, 2))
+          .then(() => {
+            global.orderInformation[0] = {
+              "OrderId": global.tab['OrderID'].replace("#", ''),
+              "invoiceDate": global.tab['invoiceDate'],
+              "ProductRef": global.tab['ProductRef'],
+              "ProductCombination": global.tab['ProductCombination'],
+              "ProductQuantity": global.tab['ProductQuantity'],
+              "ProductName": global.tab['ProductName'],
+              "UnitPrice": global.tab['UnitPrice'],
+              "OrderRef": global.tab['OrderRef'],
+              "ProductTotal": global.tab['ProductTotal'],
+              "TaxExcl": global.tab['TaxExcl'],
+              "TaxRate": global.tab['TaxRate']
+            }
+          });
+      });
+    }, 'order');
+
   }
 };
