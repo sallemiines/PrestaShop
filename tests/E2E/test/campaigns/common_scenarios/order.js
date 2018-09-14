@@ -3,7 +3,7 @@ const {CheckoutOrderPage} = require('../../selectors/FO/order_page');
 const {accountPage} = require('../../selectors/FO/add_account_page');
 const {OrderPage} = require('../../selectors/BO/order');
 const {Menu} = require('../../selectors/BO/menu.js');
-const {ShoppingCarts} = require('../../selectors/BO/order');
+const {ShoppingCart} = require('../../selectors/BO/order');
 
 let dateFormat = require('dateformat');
 let data = require('../../datas/customer_and_address_data');
@@ -150,13 +150,13 @@ module.exports = {
       for (let i = 1; i <= global.shoppingCartsNumber; i++) {
         test('Get the information of the ' + client.stringifyNumber(i) + ' shopping cart', () => {
           return promise
-            .then(() => client.getTextInVar(ShoppingCarts.id.replace('%NUMBER', i), "id"))
-            .then(() => client.getTextInVar(ShoppingCarts.order_id.replace('%NUMBER', i), "order_id"))
-            .then(() => client.getTextInVar(ShoppingCarts.customer.replace('%NUMBER', i), "customer"))
-            .then(() => client.getTextInVar(ShoppingCarts.total.replace('%NUMBER', i), "total"))
-            .then(() => client.getTextInVar(ShoppingCarts.carrier.replace('%NUMBER', i), "carrier"))
-            .then(() => client.getTextInVar(ShoppingCarts.date.replace('%NUMBER', i), "date"))
-            .then(() => client.getTextInVar(ShoppingCarts.customer_online.replace('%NUMBER', i), "customer_online"))
+            .then(() => client.getTextInVar(ShoppingCart.id.replace('%NUMBER', i), "id"))
+            .then(() => client.getTextInVar(ShoppingCart.order_id.replace('%NUMBER', i), "order_id"))
+            .then(() => client.getTextInVar(ShoppingCart.customer.replace('%NUMBER', i), "customer"))
+            .then(() => client.getTextInVar(ShoppingCart.total.replace('%NUMBER', i), "total"))
+            .then(() => client.getTextInVar(ShoppingCart.carrier.replace('%NUMBER', i), "carrier"))
+            .then(() => client.getTextInVar(ShoppingCart.date.replace('%NUMBER', i), "date"))
+            .then(() => client.getTextInVar(ShoppingCart.customer_online.replace('%NUMBER', i), "customer_online"))
             .then(() => {
               parseInt(global.tab["order_id"]) ? global.tab["order_id"] = parseInt(global.tab["order_id"]) : global.tab["order_id"] = '"' + global.tab["order_id"] + '"';
               global.tab["carrier"] === '--' ? global.tab["carrier"] = '' : global.tab["carrier"] = '"' + global.tab["carrier"] + '"';
@@ -170,11 +170,11 @@ module.exports = {
   },
   checkExportedFile: function () {
     scenario('Check that the exported shopping carts file contains exactly the same shopping carts information', client => {
-      test('should export carts', () => client.downloadCart(ShoppingCarts.export_carts_button));
+      test('should export carts', () => client.downloadCart(ShoppingCart.export_carts_button));
       test('should check the file name', () => client.checkFile(global.downloadsFolderPath, global.exportCartFileName));
       test('should read the file', () => client.readFile(global.downloadsFolderPath, global.exportCartFileName, 1000));
       test('should compare both informations', () => client.checkExportedFileInfo(1000));
-      test('should reset filter', () => client.waitForExistAndClick(ShoppingCarts.reset_button));
+      test('should reset filter', () => client.waitForExistAndClick(ShoppingCart.reset_button));
     }, 'order', true);
   }
 };

@@ -1,5 +1,6 @@
 module.exports = {
   ModulePage: {
+    modules_tab: '//*[@id="subtab-AdminModulesManage"]',
     upload_button: '//*[@id="page-header-desc-configuration-add_module"]',
     zip_file_input: '//*[@id="importDropzone"]/input',
     installed_message: '//*[@id="importDropzone"]/div[3]/p[1]',
@@ -75,9 +76,9 @@ module.exports = {
     ReadMoreModal: {
       read_more_link: '//*[@id="modules-list-container-all"]/div[contains(@data-tech-name, "%moduleTechName")]//a[text()="Read more"]',
       overview_content: '//*[@id="overview-%moduleTechName"]/p',
-      additional_content: '//*[@id="additional-%moduleTechName"]//li',
-      features_content: '//*[@id="features-%moduleTechName"]//li',
-      changelog_content: '//*[@id="changelog-%moduleTechName"]//li',
+      additional_content: '//*[@id="additional-%moduleTechName"]',
+      features_content: '//*[@id="features-%moduleTechName"]',
+      changelog_content: '//*[@id="changelog-%moduleTechName"]',
       module_readmore_tabs: '//*[@id="modules-list-container-all"]/div[contains(@data-tech-name, "%moduleTechName")]//a[contains(text(), "%NAME")]',
       close_modal_button: '//*[@id="module-modal-read-more-%moduleTechName"]//button[@class="close"]'
     },
